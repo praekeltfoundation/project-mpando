@@ -1,0 +1,61 @@
+{
+  "articles": [
+    {
+      "media": {
+        "iframe": {
+          "type": true,
+          "title": "Nurseconnect",
+          "width": "560",
+          "height": "315",
+          "src": "https://www.youtube.com/embed/F4-Q9FBYWuE"
+        },
+        "image": {
+          "type": false,
+          "alt": "Nurseconnect",
+          "src": "https://nurseconnect.org/media/images/Kholwa_is_getting_bullied_at_work_b.width-320.height-500.jpg"
+        }
+      },
+      "info": {
+        "title": "Latest Stories",
+        "articleItem": [
+          {
+            "image": {
+              "alt": "Nurseconnect",
+              "src": "https://nurseconnect.org/media/images/Kholwa_is_getting_bullied_at_work_b.width-320.height-500.jpg"
+            },
+            "title": "Appointment schedule (Remider)",
+            "description": "Maternal health and access services.",
+            "link": " "
+          },
+          {
+            "image": {
+              "alt": "Health",
+              "src": "https://nurseconnect.org/media/images/An_HIV_pregnant_mom_learns_about_Pr.width-320.height-500.jpg"
+            },
+            "title": "NurseConnect Resilience messages",
+            "description": "NurseConnect uses mobile technology to support nurses and midwives across South Africa.",
+            "link": " "
+          },
+          {
+            "image": {
+              "alt": "Nurses burnout",
+              "src": "https://nurseconnect.org/media/images/Mmabatho_realises_that_one_of_her_n.width-320.height-500.jpg"
+            },
+            "title": "Nurses burnout",
+            "description": "What can she do to help the young nurse?",
+            "link": " "
+          },
+          {
+            "image": {
+              "alt": "Motivation",
+              "src": "https://nurseconnect.org/media/images/Can_Mmabatho_inspire_and_motivate_h.width-320.height-500.jpg"
+            },
+            "title": "Motivating tired staff",
+            "description": "The seniour nurse deals with low morale in a surprising way",
+            "link": " "
+          }
+        ]
+      }
+    }
+  ]
+}

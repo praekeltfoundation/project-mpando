@@ -1,0 +1,54 @@
+@import "/src/Variables.css";
+
+.Header {
+  padding: 0.5em 0.5em 1em;
+}
+.Header-list {
+  align-items: center;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+.Header-list__item--search {
+  width: 100%;
+}
+.Header-list__item--subscribe {
+  margin: 0 auto;
+}
+.subscribe-btn {
+  background-color: var(--brand-orange-bittersweet);
+  border-radius: 25px;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: normal;
+  height: 43.5px;
+  padding: 5px 15px;
+  width: 160px;
+}
+
+/* RESPONSIVE */
+@media screen and (min-width: 720px) {
+  .Header {
+    background: var(--secondary-blue-darkPalette);
+    padding: 1em 5% 5px;
+  }
+  .Header-list__item--search {
+    width: 70%;
+  }
+  .Header-list__item--subscribe {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 992px) {}
+@media screen and (min-width: 1024px) {
+  .Header {
+    padding: 1em 10% 5px;
+  }
+}
+@media screen and (min-width: 1280px) {}
+@media screen and (min-width: 1366px) {}
+@media screen and (min-width: 1440px) {}
+@media screen and (min-width: 1600px) {}
+@media screen and (min-width: 1920px) {}

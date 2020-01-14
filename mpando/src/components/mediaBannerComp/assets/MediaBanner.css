@@ -1,0 +1,11 @@
+.Media-banner {
+  width: 100%;
+}
+.Media-banner--inner {
+  height: 35vh;
+  overflow: hidden;
+}
+.Media-banner__video {
+  background-color: var(--greyscale-grey-lightSlate);
+  width: 100%;
+}

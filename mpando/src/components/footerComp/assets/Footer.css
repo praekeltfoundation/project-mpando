@@ -1,0 +1,48 @@
+@import "/src/Variables.css";
+
+.Footer {
+  background-color: #fff;
+  padding: 1em 0.5em;
+  margin: 2em 0 0;
+}
+.Footer--inner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.Menu {
+  overflow: auto;
+}
+.Menu-list {}
+.Menu-list__item {
+  display: inline-block;
+  margin: 0 1em;
+}
+.Menu-list__anchor {
+  color: var(--brand-blue-pelorous);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.Logo__image {
+  max-width: 125px;
+}
+
+@media screen and (min-width: 720px) {
+  .Footer {
+    padding: 3em 5%;
+  }
+  .Footer--inner {
+    padding: 10px 0 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .Footer {
+    padding: 3em 15%;
+  }
+}

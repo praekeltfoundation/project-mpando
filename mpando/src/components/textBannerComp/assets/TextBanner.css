@@ -1,0 +1,36 @@
+@import "/src/Variables.css";
+
+.Banner {
+  position: relative;
+}
+.Banner--inner {
+  color: var(--brand-orange-bittersweet);
+  padding: 1em 0.5em;
+  text-align: center;
+}
+.Banner__title {
+  font-size: 22px;
+  padding: 0 0.5em;
+}
+.Banner__author {
+  margin: 0;
+}
+
+@media screen and (min-width: 720px) {
+  .Banner--inner {
+    padding: 1em 5%;
+  }
+  .Banner__title {
+    padding: 0 15%;
+  }
+}
+
+
+@media screen and (min-width: 1024px) {
+  .Banner--inner {
+    padding: 1em 10%;
+  }
+  .Banner__title {
+    padding: 0 20%;
+  }
+}
