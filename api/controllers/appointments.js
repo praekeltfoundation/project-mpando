@@ -1,4 +1,4 @@
-const { Appointment, Slot } = Model;
+const { Appointment, Slot } = require('../models/index');
 const Nexmo = require("nexmo");
 
 const appointmentController = {
