@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema,
   model = mongoose.model.bind(mongoose),
   ObjectId = mongoose.Schema.Types.ObjectId;
@@ -7,6 +9,7 @@ const Schema = mongoose.Schema,
     created_at: Date
   });
 const Slot = model('Slot', slotSchema);
+
 const appointmentSchema = new Schema({
   id: ObjectId,
   name: String,
