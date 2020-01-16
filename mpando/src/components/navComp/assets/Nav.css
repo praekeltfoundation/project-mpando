@@ -43,7 +43,7 @@
 }
 .Nav-list__link:hover,
 .Nav-list__link:focus {
-  text-decoration: underline;
+  border-bottom: 2px solid var(--brand-blue-pelorous);
 }
 
 .Nav-list__link--subtext {
@@ -52,6 +52,10 @@
   margin: 0 2px;
 }
 
+.Nav-list__active {
+  border-bottom: 2px solid var(--brand-blue-pelorous);
+  transition: border-bottom .5s ease-in-out;
+}
 
 @media screen and (min-width: 768px) {
   .Navigation {

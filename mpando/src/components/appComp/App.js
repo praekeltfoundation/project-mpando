@@ -17,11 +17,11 @@ class App extends Component {
       <Router>
         <Header/>
           <Switch>
-          <Route path='/appointment'>
-            <MuiThemeProvider>
-              <Appointment/>
-            </MuiThemeProvider>
-          </Route>
+            <Route path='/appointment'>
+              <MuiThemeProvider>
+                <Appointment/>
+              </MuiThemeProvider>
+            </Route>
             <Route path='/'>
               <Fragment>
                 <Nav/>
