@@ -28,7 +28,7 @@
 }
 
 /* RESPONSIVE */
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 768px) {
   .Header {
     background: var(--secondary-blue-darkPalette);
     padding: 1em 5% 5px;

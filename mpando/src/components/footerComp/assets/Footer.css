@@ -32,7 +32,7 @@
   max-width: 125px;
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 768px) {
   .Footer {
     padding: 3em 5%;
   }

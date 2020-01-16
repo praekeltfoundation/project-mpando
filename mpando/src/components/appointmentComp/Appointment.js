@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import MediaBanner from '../mediaBannerComp/MediaBanner';
 import Nav from '../navComp/Nav';
-import './Appointment';
+import './assets/Appointment.css';
 
-import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
 import FlatButton from "material-ui/FlatButton";
 import DatePicker from "material-ui/DatePicker";
@@ -185,7 +184,7 @@ class Appointment extends Component {
   };
 
   renderAppointmentConfirmation() {
-    const spanStyle = { color: "#00C853" };
+    const spanStyle = { color: "#2d9ec5" };
     return (
       <section>
         <p>
@@ -267,12 +266,13 @@ class Appointment extends Component {
     const modalActions = [
       <FlatButton
         label="Cancel"
+        className="RaisedButton"
         primary={false}
         onClick={() => this.setState({ confirmationModalOpen: false })}
       />,
       <FlatButton
         label="Confirm"
-        style={{ backgroundColor: "#00C853 !important" }}
+        className="FlatButton"
         primary={true}
         onClick={() => this.handleSubmit()}
       />
@@ -281,73 +281,60 @@ class Appointment extends Component {
       <div className="Appointment">
         <MediaBanner/>
         <Nav/>
-        <AppBar
-          title="Appointment Scheduler"
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
-        />
-        <section
-          style={{
-            maxWidth: !smallScreen ? "80%" : "100%",
-            margin: "auto",
-            marginTop: !smallScreen ? 20 : 0
-          }}>
-        <Card
-          style={{
-            padding: "12px 12px 25px 12px",
-            height: smallScreen ? "100vh" : null
-          }}>
-          <Stepper
-            activeStep={stepIndex}
-            orientation="vertical"
-            linear={false}>
-            <Step>
-              <StepLabel>
-                Choose an available day for your appointment
-              </StepLabel>
-              <StepContent>
-                {DatePickerExampleSimple()}
-                {this.renderStepActions(0)}
-              </StepContent>
-            </Step>
-            <Step disabled={!data.appointmentDate}>
-              <StepLabel>
-                Choose an available time for your appointment
-              </StepLabel>
-              <StepContent>
-                <SelectField
-                  floatingLabelText="AM/PM"
-                  value={data.appointmentMeridiem}
-                  onChange={(evt, key, payload) =>
-                    this.handleSetAppointmentMeridiem(payload)
-                  }
-                  selectionRenderer={value => (value ? "PM" : "AM")}
-                >
-                  <MenuItem value={0} primaryText="AM" />
-                  <MenuItem value={1} primaryText="PM" />
-                </SelectField>
-                <RadioButtonGroup
-                  style={{
-                    marginTop: 15,
-                    marginLeft: 15
-                  }}
-                  name="appointmentTimes"
-                  defaultSelected={data.appointmentSlot}
-                  onChange={(evt, val) => this.handleSetAppointmentSlot(val)}
-                >
-                  {this.renderAppointmentTimes()}
-                </RadioButtonGroup>
-                {this.renderStepActions(1)}
-              </StepContent>
-            </Step>
-            <Step>
-              <StepLabel>
-                <p>Share your contact information with us and we'll send you a
-                reminder</p>
-              </StepLabel>
-              <StepContent>
-                <p>
-                  <section>
+        <div className="Appointment-scheduler">
+          <Card style={{ padding:"12px", height:smallScreen ? "100vh" : null }}>
+            <Stepper
+              activeStep={stepIndex}
+              orientation="vertical"
+              linear={false}>
+              <Step>
+                <StepLabel>
+                  Choose an available day for your appointment
+                </StepLabel>
+                <StepContent>
+                  {DatePickerExampleSimple()}
+                  {this.renderStepActions(0)}
+                </StepContent>
+              </Step>
+              <Step disabled={!data.appointmentDate}>
+                <StepLabel>
+                  Choose an available time for your appointment
+                </StepLabel>
+                <StepContent>
+                  <SelectField
+                    floatingLabelText="AM/PM"
+                    value={data.appointmentMeridiem}
+                    onChange={(evt, key, payload) =>
+                      this.handleSetAppointmentMeridiem(payload)
+                    }
+                    selectionRenderer={value => (value ? "PM" : "AM")}
+                  >
+                    <MenuItem value={0} primaryText="AM" />
+                    <MenuItem value={1} primaryText="PM" />
+                  </SelectField>
+                  <RadioButtonGroup
+                    style={{
+                      marginTop: 15,
+                      marginLeft: 15
+                    }}
+                    name="appointmentTimes"
+                    defaultSelected={data.appointmentSlot}
+                    onChange={(evt, val) => this.handleSetAppointmentSlot(val)}
+                  >
+                    {this.renderAppointmentTimes()}
+                  </RadioButtonGroup>
+                  {this.renderStepActions(1)}
+                </StepContent>
+              </Step>
+              <Step>
+                <StepLabel>
+                  Share your contact information with us and we'll send you a
+                  reminder
+                </StepLabel>
+                <StepContent>
+                  <section className="Appointment-contact">
                     <TextField
+                      className="Appointment-field"
                       name="first_name"
                       hintText="First Name"
                       floatingLabelText="First Name"
@@ -356,6 +343,7 @@ class Appointment extends Component {
                       }
                     />
                     <TextField
+                      className="Appointment-field"
                       name="last_name"
                       hintText="Last Name"
                       floatingLabelText="Last Name"
@@ -364,6 +352,7 @@ class Appointment extends Component {
                       }
                     />
                     <TextField
+                      className="Appointment-field"
                       name="email"
                       hintText="youraddress@mail.com"
                       floatingLabelText="Email"
@@ -375,6 +364,7 @@ class Appointment extends Component {
                       }
                     />
                     <TextField
+                      className="Appointment-field"
                       name="phone"
                       hintText="+2348995989"
                       floatingLabelText="Phone"
@@ -386,7 +376,7 @@ class Appointment extends Component {
                       }
                     />
                     <RaisedButton
-                      style={{ display: "block", backgroundColor: "#00C853" }}
+                      className="RaisedButtonBig"
                       label={
                         contactFormFilled
                           ? "Schedule"
@@ -402,33 +392,31 @@ class Appointment extends Component {
                         })
                       }
                       disabled={!contactFormFilled || data.processed}
-                      style={{ marginTop: 20, maxWidth: 100 }}
                     />
-                  </section>
-                </p>
-                {this.renderStepActions(2)}
-              </StepContent>
-            </Step>
-          </Stepper>
-        </Card>
-        <Dialog
-          modal={true}
-          open={confirmationModalOpen}
-          actions={modalActions}
-          title="Confirm your appointment">
-          {this.renderAppointmentConfirmation()}
-        </Dialog>
-        <SnackBar
-          open={confirmationSnackbarOpen || isLoading}
-          message={
-            isLoading ? "Loading... " : data.confirmationSnackbarMessage || ""
-          }
-          autoHideDuration={10000}
-          onRequestClose={() =>
-            this.setState({ confirmationSnackbarOpen: false })
-          }
-        />
-        </section>
+                    </section>
+                  {this.renderStepActions(2)}
+                </StepContent>
+              </Step>
+            </Stepper>
+          </Card>
+          <Dialog
+            modal={true}
+            open={confirmationModalOpen}
+            actions={modalActions}
+            title="Confirm your appointment">
+            {this.renderAppointmentConfirmation()}
+          </Dialog>
+          <SnackBar
+            open={confirmationSnackbarOpen || isLoading}
+            message={
+              isLoading ? "Loading... " : data.confirmationSnackbarMessage || ""
+            }
+            autoHideDuration={10000}
+            onRequestClose={() =>
+              this.setState({ confirmationSnackbarOpen: false })
+            }
+          />
+        </div>
       </div>
     );
   }
