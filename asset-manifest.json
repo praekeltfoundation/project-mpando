@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bf68fc66.chunk.css",
+    "main.js": "/static/js/main.ca2a76c1.chunk.js",
+    "main.js.map": "/static/js/main.ca2a76c1.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5274d17f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5274d17f.js.map",
+    "static/js/2.8e083d5e.chunk.js": "/static/js/2.8e083d5e.chunk.js",
+    "static/js/2.8e083d5e.chunk.js.map": "/static/js/2.8e083d5e.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.2183ed484f0a9a16f49d10a50e704c32.js": "/precache-manifest.2183ed484f0a9a16f49d10a50e704c32.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.bf68fc66.chunk.css.map": "/static/css/main.bf68fc66.chunk.css.map",
+    "static/js/2.8e083d5e.chunk.js.LICENSE": "/static/js/2.8e083d5e.chunk.js.LICENSE",
+    "static/media/nc.webm": "/static/media/nc.65dd6407.webm",
+    "static/media/nc.mp4": "/static/media/nc.9cabae9b.mp4",
+    "static/media/ndoh-logo.png": "/static/media/ndoh-logo.b2da18c7.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5274d17f.js",
+    "static/js/2.8e083d5e.chunk.js",
+    "static/css/main.bf68fc66.chunk.css",
+    "static/js/main.ca2a76c1.chunk.js"
+  ]
+}
