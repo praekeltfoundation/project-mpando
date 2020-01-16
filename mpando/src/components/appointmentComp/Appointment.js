@@ -1,6 +1,7 @@
-import React, {Component } from "react";
+import React, { Component } from "react";
 import MediaBanner from '../mediaBannerComp/MediaBanner';
 import Nav from '../navComp/Nav';
+import './Appointment';
 
 import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
@@ -14,6 +15,7 @@ import SnackBar from "material-ui/Snackbar";
 import Card from "material-ui/Card";
 import { Step,Stepper,StepLabel,StepContent } from "material-ui/Stepper";
 import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
+
 import moment from "moment";
 import axios from "axios";
 
@@ -37,14 +39,12 @@ class Appointment extends Component {
       stepIndex: 0
     };
   }
-
   componentWillMount() {
     axios.get(API_BASE + 'api/retrieveSlots').then(response => {
-      console.log("response via db: ", response.data);
-      this.handleDBReponse(response.data);
+      console.log("Response via db: ", response.data)
+      this.handleDBReponse(response.data)
     });
   };
-
   handleNext = () => {
     const { stepIndex } = this.state;
     this.setState({
@@ -58,32 +58,29 @@ class Appointment extends Component {
       this.setState({ stepIndex: stepIndex - 1 });
     }
   };
-
   validateEmail(email) {
-const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    return regex.test(email)
-      ? this.setState({ email: email, validEmail: true })
-      : this.setState({ validEmail: false });
-  };
+  const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      return regex.test(email)
+        ? this.setState({ email: email, validEmail: true })
+        : this.setState({ validEmail: false });
+    };
   validatePhone(phoneNumber) {
     const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
     return regex.test(phoneNumber)
       ? this.setState({ phone: phoneNumber, validPhone: true })
       : this.setState({ validPhone: false });
   };
-
   renderStepActions(step) {
     const { stepIndex } = this.state;
     return (
-      <div style={{ margin: "12px 0" }}>
+      <div className="Call-to-actions">
         <RaisedButton
           label={stepIndex === 2 ? "Finish" : "Next"}
           disableTouchRipple={true}
           disableFocusRipple={true}
           primary={true}
           onClick={this.handleNext}
-          backgroundColor="#00C853 !important"
-          style={{ marginRight: 12, backgroundColor: "#00C853" }}
+          className="RaisedButton"
         />
         {step > 0 && (
           <FlatButton
@@ -92,22 +89,28 @@ const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(
             disableTouchRipple={true}
             disableFocusRipple={true}
             onClick={this.handlePrev}
+            className="FlatButton"
           />
         )}
       </div>
     );
   };
   handleSetAppointmentDate(date) {
-    this.setState({ appointmentDate: date, confirmationTextVisible: true });
+    this.setState({
+      appointmentDate: date,
+      confirmationTextVisible: true
+    });
   };
   handleSetAppointmentSlot(slot) {
-    this.setState({ appointmentSlot: slot });
+    this.setState({
+      appointmentSlot: slot
+    });
   };
   handleSetAppointmentMeridiem(meridiem) {
-    this.setState({ appointmentMeridiem: meridiem });
+    this.setState({
+      appointmentMeridiem: meridiem
+    });
   };
-
-
   checkDisableDate(day) {
     const dateString = moment(day).format("YYYY-DD-MM");
     return (
@@ -117,10 +120,9 @@ const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(
         .diff(moment().startOf("day")) < 0
     );
   };
-
   handleDBReponse(response) {
     const appointments = response;
-    const today = moment().startOf("day"); //start of today 12 am
+    const today = moment().startOf("day"); //Start of today 12 am
     const initialSchedule = {};
     initialSchedule[today.format("YYYY-DD-MM")] = true;
 
@@ -129,11 +131,11 @@ const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(
       : appointments.reduce((currentSchedule, appointment) => {
         const { slot_date, slot_time } = appointment;
         const dateString = moment(slot_date, "YYYY-DD-MM").format("YYYY-DD-MM");
-        console.log('Date string:',dateString);
+
         currentSchedule = !currentSchedule[slot_date]
           ? (currentSchedule[dateString] = Array(8).fill(false))
           : null;
-        currentSchedule = Array.isArray(currentSchedule[dateString])
+       currentSchedule = Array.isArray(currentSchedule[dateString])
           ? (currentSchedule[dateString][slot_time] = true)
           : null;
         return currentSchedule;
@@ -152,15 +154,10 @@ const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(
     if (!this.state.isLoading) {
       const slots = [...Array(8).keys()];
       return slots.map(slot => {
+        console.log(this.state.appointmentDate);
         const appointmentDateString = moment(this.state.appointmentDate).format("YYYY-DD-MM");
-        const time1 = moment()
-         .hour(9)
-         .minute(0)
-         .add(slot, "hours");
-        const time2 = moment()
-         .hour(9)
-         .minute(0)
-         .add(slot + 1, "hours");
+        const time1 = moment().hour(9).minute(0).add(slot, "hours");
+        const time2 = moment().hour(9).minute(0).add(slot + 1, "hours");
         const scheduleDisabled = this.state.schedule[appointmentDateString] ?
           this.state.schedule[
             moment(this.state.appointmentDate).format("YYYY-DD-MM")
@@ -183,7 +180,7 @@ const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(
         );
       });
     } else {
-     return null;
+      return null;
     }
   };
 
@@ -249,12 +246,11 @@ const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(
   };
 
   render() {
-    const {
-      finished, isLoading, smallScreen, stepIndex,
+    const { finished, isLoading, smallScreen, stepIndex,
       confirmationModalOpen, confirmationSnackbarOpen, ...data
     } = this.state;
-    const contactFormFilled =
-      data.firstName && data.lastName &&
+
+    const contactFormFilled = data.firstName && data.lastName &&
       data.phone && data.email &&
       data.validPhone && data.validEmail;
 
@@ -345,14 +341,13 @@ const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(
             </Step>
             <Step>
               <StepLabel>
-                Share your contact information with us and we'll send you a
-                reminder
+                <p>Share your contact information with us and we'll send you a
+                reminder</p>
               </StepLabel>
               <StepContent>
                 <p>
                   <section>
                     <TextField
-                      style={{ display: "block" }}
                       name="first_name"
                       hintText="First Name"
                       floatingLabelText="First Name"
@@ -361,7 +356,6 @@ const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(
                       }
                     />
                     <TextField
-                      style={{ display: "block" }}
                       name="last_name"
                       hintText="Last Name"
                       floatingLabelText="Last Name"
@@ -370,7 +364,6 @@ const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(
                       }
                     />
                     <TextField
-                      style={{ display: "block" }}
                       name="email"
                       hintText="youraddress@mail.com"
                       floatingLabelText="Email"
@@ -382,7 +375,6 @@ const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(
                       }
                     />
                     <TextField
-                      style={{ display: "block" }}
                       name="phone"
                       hintText="+2348995989"
                       floatingLabelText="Phone"

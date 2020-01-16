@@ -1,3 +1,18 @@
 .Appointment {
   overflow: auto;
 }
+
+
+.Call-to-actions {
+  overflow: auto;
+}
+
+.Call-to-actions .RaisedButton {
+  /*#00C853*/
+  background: var(--greyscale-grey-lightSlate);
+}
+
+.Call-to-actions .FlatButton {
+  /*#00C853*/
+  background: var(--greyscale-grey);
+}
