@@ -1,16 +1,17 @@
+'use strict';
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema,
-  model = mongoose.model.bind(mongoose),
-  ObjectId = mongoose.Schema.Types.ObjectId;
-  const slotSchema = new Schema ({
-    slot_time: String,
-    slot_date: String,
-    created_at: Date
-  });
-const Slot = model('Slot', slotSchema);
+const Schema = mongoose.Schema;
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const appointmentSchema = new Schema({
+const SlotSchema = new Schema({
+  slot_time: String,
+  slot_date: String,
+  created_at: Date
+});
+const Slot = mongoose.model('Slot', SlotSchema);
+
+const AppointmentSchema = new Schema({
   id: ObjectId,
   name: String,
   email: String,
@@ -18,4 +19,10 @@ const appointmentSchema = new Schema({
   slots:{type: ObjectId, ref: 'Slot'},
   created_at: Date
 });
-const Appointment = model('Appointment', appointmentSchema);
+const Appointment = mongoose.model('Appointment', AppointmentSchema);
+
+
+module.exports = {
+  Slot,
+  Appointment
+}

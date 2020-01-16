@@ -3,7 +3,6 @@ import './assets/Search.css';
 
 function Search() {
   const [searchQuery, setSearchQuery] = React.useState('');
-  const [searchResults, setSearchResults] = React.useState([]);
   const handleChangeState = event => {
     setSearchQuery(event.target.value);
   }

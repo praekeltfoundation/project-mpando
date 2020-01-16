@@ -14,6 +14,8 @@ const appointmentController = {
       created_at: Date.now()
     });
     newslot.save();
+
+    console.log(requestBody, requestBody.slot_time, requestBody.slot_date )
     // Creates a new record from a submitted form
     let newappointment = new Appointment({
       name: requestBody.name,
@@ -36,22 +38,13 @@ const appointmentController = {
       Appointment.find({ _id: saved._id })
         .populate("slots")
         .exec((err, appointment) => res.json(appointment));
-      const from = VIRTUAL_NUMBER;
-      const to = RECIPIENT_NUMBER;
+      
       const message = {
         content: {
           type: 'text',
           text: msg
         }
       }
-
-      // nexmo.message.sendSms(from, to, msg, (err, responseData) => {
-      //   if (err) {
-      //     console.log(err);
-      //   } else {
-      //     console.dir(responseData);
-      //   }
-      // });
 
       nexmo.channel.send(
         { type: 'whatsapp', number: '27658159892' },
@@ -61,8 +54,8 @@ const appointmentController = {
           console.log(data.message_uuid);
         }
       );
-
     });
   }
 };
+
 module.exports = appointmentController;
