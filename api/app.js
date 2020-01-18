@@ -15,7 +15,7 @@ mongoose.Promise = global.Promise;
 //Adds connection to database using mongoose
 //for <dbuser>:replace with your username, <dbpassword>: replace with your password.
 //<DATABASE_URL>: replace with database url, example:ds234562.mlab.com:17283
-mongoose.connect('mongodb://admin:C0mmunicationz@ds263448.mlab.com:63448/appointments',{
+mongoose.connect('mongodb://admin:mits0-qalaba@ds263808.mlab.com:63808/appointment',{
   useUnifiedTopology: true,
   useNewUrlParser: true
 }).then(() => console.log('Database Connected!')).catch(err => {

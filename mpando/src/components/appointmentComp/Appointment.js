@@ -5,14 +5,19 @@ import './assets/Appointment.css';
 
 import RaisedButton from "material-ui/RaisedButton";
 import FlatButton from "material-ui/FlatButton";
+
 import DatePicker from "material-ui/DatePicker";
 import Dialog from "material-ui/Dialog";
 import SelectField from "material-ui/SelectField";
+
 import MenuItem from "material-ui/MenuItem";
 import TextField from "material-ui/TextField";
+
 import SnackBar from "material-ui/Snackbar";
 import Card from "material-ui/Card";
+
 import { Step,Stepper,StepLabel,StepContent } from "material-ui/Stepper";
+
 import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 
 import moment from "moment";
@@ -38,10 +43,10 @@ class Appointment extends Component {
       stepIndex: 0
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     axios.get(API_BASE + 'api/retrieveSlots').then(response => {
-      console.log("Response via db: ", response.data)
-      this.handleDBReponse(response.data)
+      console.log("Response via db: ", response.data);
+      this.handleDBReponse(response.data);
     });
   };
   handleNext = () => {
@@ -57,14 +62,12 @@ class Appointment extends Component {
       this.setState({ stepIndex: stepIndex - 1 });
     }
   };
-  validateEmail(email) {
-  const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  validateEmail(email) {const regex =/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       return regex.test(email)
         ? this.setState({ email: email, validEmail: true })
         : this.setState({ validEmail: false });
     };
-  validatePhone(phoneNumber) {
-    const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+  validatePhone(phoneNumber) {const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
     return regex.test(phoneNumber)
       ? this.setState({ phone: phoneNumber, validPhone: true })
       : this.setState({ validPhone: false });
@@ -119,41 +122,14 @@ class Appointment extends Component {
         .diff(moment().startOf("day")) < 0
     );
   };
-  handleDBReponse(response) {
-    const appointments = response;
-    const today = moment().startOf("day"); //Start of today 12 am
-    const initialSchedule = {};
-    initialSchedule[today.format("YYYY-DD-MM")] = true;
 
-    const schedule = !appointments.length
-      ? initialSchedule
-      : appointments.reduce((currentSchedule, appointment) => {
-        const { slot_date, slot_time } = appointment;
-        const dateString = moment(slot_date, "YYYY-DD-MM").format("YYYY-DD-MM");
-
-        currentSchedule = !currentSchedule[slot_date]
-          ? (currentSchedule[dateString] = Array(8).fill(false))
-          : null;
-       currentSchedule = Array.isArray(currentSchedule[dateString])
-          ? (currentSchedule[dateString][slot_time] = true)
-          : null;
-        return currentSchedule;
-      }, initialSchedule);
-
-    for (let day in schedule) {
-     let slots = schedule[day].length ?
-      schedule[day].every(slot => slot === true) ? (schedule[day] = true) : null : null;
-    }
-    this.setState({
-      schedule: schedule
-    });
-  };
+  
 
   renderAppointmentTimes() {
     if (!this.state.isLoading) {
       const slots = [...Array(8).keys()];
       return slots.map(slot => {
-        console.log(this.state.appointmentDate);
+        console.log('Appointment Date',this.state.appointmentDate);
         const appointmentDateString = moment(this.state.appointmentDate).format("YYYY-DD-MM");
         const time1 = moment().hour(9).minute(0).add(slot, "hours");
         const time2 = moment().hour(9).minute(0).add(slot + 1, "hours");
@@ -182,6 +158,7 @@ class Appointment extends Component {
       return null;
     }
   };
+  
 
   renderAppointmentConfirmation() {
     const spanStyle = { color: "#2d9ec5" };
@@ -218,9 +195,12 @@ class Appointment extends Component {
       </section>
     );
   }
+  
 
   handleSubmit() {
-    this.setState({ confirmationModalOpen: false });
+    this.setState({ 
+      confirmationModalOpen: false 
+    });
     const newAppointment = {
       name: this.state.firstName + " " + this.state.lastName,
       email: this.state.email,
@@ -240,7 +220,36 @@ class Appointment extends Component {
       return this.setState({
         confirmationSnackbarMessage: "Appointment failed to save.",
         confirmationSnackbarOpen: true
-      })
+      });
+    });
+  };
+
+  handleDBReponse(response) {
+    const appointments = response;
+    const today = moment().startOf("day"); //Start of today 12 am
+    const initialSchedule = {};
+    initialSchedule[today.format("YYYY-DD-MM")] = true;
+
+    const schedule = !appointments.length ? initialSchedule
+      : appointments.reduce((currentSchedule, appointment) => {
+        const { slot_date, slot_time } = appointment;
+        const dateString = moment(slot_date, "YYYY-DD-MM").format("YYYY-DD-MM");
+
+        currentSchedule = !currentSchedule[slot_date]
+          ? (currentSchedule[dateString] = Array(8).fill(false))
+          : null;
+        currentSchedule = Array.isArray(currentSchedule[dateString])
+          ? (currentSchedule[dateString][slot_time] = true)
+          : null;
+        return currentSchedule;
+      }, initialSchedule);
+
+    for (let day in schedule) {
+      let slots = schedule[day].length ? schedule[day].every(slot => slot === true) ? (schedule[day] = true) : null : null;
+    }
+
+    this.setState({
+      schedule: schedule // An Array
     });
   };
 
