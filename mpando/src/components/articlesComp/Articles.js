@@ -1,5 +1,6 @@
 import React from 'react';
 import data from './articles.json';
+
 import './assets/Articles.css';
 
 function Aricles() {

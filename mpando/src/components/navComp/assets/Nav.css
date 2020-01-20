@@ -1,5 +1,3 @@
-@import "/src/Variables.css";
-
 /* HEADER WRAPPER */
 .StickyWrapper {
   background-color: var(--brand-blue-regal);

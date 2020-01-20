@@ -123,7 +123,7 @@ class Appointment extends Component {
     );
   };
 
-  
+
 
   renderAppointmentTimes() {
     if (!this.state.isLoading) {
@@ -158,7 +158,7 @@ class Appointment extends Component {
       return null;
     }
   };
-  
+
 
   renderAppointmentConfirmation() {
     const spanStyle = { color: "#2d9ec5" };
@@ -195,11 +195,11 @@ class Appointment extends Component {
       </section>
     );
   }
-  
+
 
   handleSubmit() {
-    this.setState({ 
-      confirmationModalOpen: false 
+    this.setState({
+      confirmationModalOpen: false
     });
     const newAppointment = {
       name: this.state.firstName + " " + this.state.lastName,
