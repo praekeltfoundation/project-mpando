@@ -1,29 +1,46 @@
 .Header {
-  padding: 0.5em 0.5em 1em;
+  padding: 0.5em;
 }
 .Header-list {
+  align-content: center;
   align-items: center;
   display: flex;
   flex-flow: wrap;
   justify-content: space-between;
 }
+
 .Header-list__item--search {
-  width: 100%;
+  display: inline-block;
+  margin: 0;
+  width: 75%;
 }
 .Header-list__item--subscribe {
-  margin: 10px auto;
+  display: inline-block;
+  width: auto;
 }
 .subscribe-btn {
-  background-color: var(--brand-orange-bittersweet);
-  border-radius: 25px;
+  background-color: var(--brand-blue-pelorous);
+  border-radius: 50%;
   border: none;
   color: #fff;
-  font-size: 16px;
+  cursor: pointer;
+  font-size: 12px;
   font-weight: normal;
-  height: 43.5px;
-  padding: 5px 15px;
-  width: 160px;
+  height: 55px;
+  padding: 5px;
+  width: 55px;
 }
+.subscribe-btn:hover {
+  opacity: 0.5;
+}
+
+.subscribe-btn::before {
+  background: url('./images/wa.png') no-repeat center/ 100%;
+  content: "";
+  display: block;
+  height: 40px;
+}
+
 
 /* RESPONSIVE */
 @media screen and (min-width: 768px) {

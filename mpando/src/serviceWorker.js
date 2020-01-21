@@ -12,16 +12,36 @@
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
-    // [::1] is the IPv6 localhost address.
-    window.location.hostname === '[::1]' ||
-    // 127.0.0.0/8 are considered localhost for IPv4.
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
+  // [::1] is the IPv6 localhost address.
+  window.location.hostname === '[::1]' ||
+  // 127.0.0.0/8 are considered localhost for IPv4.
+  window.location.hostname.match(
+    /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+  )
 );
 
+
+/*You have to supply a name for your cache, this will
+ allow us to remove an old one to avoid hitting disk
+ space limits and displaying old resources
+ */
+var cacheName = 'v1';
+
+
+/*Assets to cache
+ The items to cache at this point should be something you don’t forsee 
+ changing often, such as base styles, scripts, fonts, logos, etc.
+*/
+var assetsToCache = [
+  '/css/main.min.css',
+  '/js/scripts.js',
+  '/images/unicorn.svg',
+  '/fonts/icomoon.woff'
+];
+
 export function register(config) {
-  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+  //process.env.NODE_ENV === 'production' &&
+  if ('serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== window.location.origin) {
@@ -33,11 +53,10 @@ export function register(config) {
 
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
         checkValidServiceWorker(swUrl, config);
-
+        
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(() => {
@@ -49,8 +68,6 @@ export function register(config) {
       } else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config);
-
-
       }
     });
   } else {
@@ -58,10 +75,11 @@ export function register(config) {
   }
 }
 
+
 function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
-    .then(registration => {
+    .then((registration) => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
@@ -96,9 +114,12 @@ function registerValidSW(swUrl, config) {
           }
         };
       };
+      // Success Message
+      console.log('ServiceWorker succesfully registered');
     })
-    .catch(error => {
-      console.error('Error during service worker registration:', error);
+    .catch((err) => {
+      //Error Message
+      console.error('Error during service worker registration:', err);
     });
 }
 
@@ -106,12 +127,10 @@ function checkValidServiceWorker(swUrl, config) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl, {
     headers: { 'Service-Worker': 'script' }
-  })
-    .then(response => {
+  }).then(response => {
       // Ensure service worker exists, and that we really are getting a JS file.
       const contentType = response.headers.get('content-type');
-      if (
-        response.status === 404 ||
+      if (response.status === 404 ||
         (contentType != null && contentType.indexOf('javascript') === -1)
       ) {
         // No service worker found. Probably a different app. Reload the page.
@@ -124,8 +143,7 @@ function checkValidServiceWorker(swUrl, config) {
         // Service worker found. Proceed as normal.
         registerValidSW(swUrl, config);
       }
-    })
-    .catch(() => {
+    }).catch(() => {
       console.log(
         'No internet connection found. App is running in offline mode.'
       );

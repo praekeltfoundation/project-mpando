@@ -8,13 +8,16 @@ function Search() {
   }
   return (
     <div className="search-wrapper">
-      <input
-        type="search"
-        className="search-input"
-        placeholder="Search here"
-        value={searchQuery}
-        onChange={handleChangeState}
-      />
+      <form class="form-search form-inline" action="/" id="body-search">
+        <button type="submit" class="search-submit"></button>
+        <input
+          type="search"
+          className="search-input"
+          placeholder="Search here"
+          value={searchQuery}
+          onChange={handleChangeState}
+        />
+      </form>
     </div>
   )
 }

@@ -20,7 +20,7 @@ function Header() {
           <Search/>
         </div>
         <div className="Header-list__item Header-list__item--subscribe">
-          <button className="subscribe-btn">WhatsApp</button>
+          <button className="subscribe-btn"></button>
         </div>
       </div>
     </header>
