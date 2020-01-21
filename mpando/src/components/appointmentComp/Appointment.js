@@ -293,7 +293,7 @@ class Appointment extends Component {
       <div className="Appointment__date-picker">
         <DatePicker
           hintText="Select Date"
-          mode="landscape"
+          mode={smallScreen ? "portrait" : "landscape"}
           onChange={(n, date) => this.handleSetAppointmentDate(date)}
           shouldDisableDate={() => false}
         />

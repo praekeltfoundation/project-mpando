@@ -2,16 +2,11 @@
   padding: 0.5em;
 }
 .Header-list {
-  align-content: center;
-  align-items: center;
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-between;
+  overflow: auto;
 }
-
 .Header-list__item--search {
   display: inline-block;
-  margin: 0;
+  margin: 0 10px 0 0;
   width: 75%;
 }
 .Header-list__item--subscribe {
@@ -59,7 +54,13 @@
 
 @media screen and (min-width: 992px) {}
 @media screen and (min-width: 1024px) {
-  .Header {
+  .Header-list {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+
     padding: 1em 10% 5px;
   }
 }
