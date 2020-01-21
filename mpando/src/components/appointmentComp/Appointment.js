@@ -223,12 +223,19 @@ class Appointment extends Component {
       slot_time: this.state.appointmentSlot
     };
     axios.post(API_BASE + "api/appointmentCreate", newAppointment)
-    .then(response =>
-      this.setState({
-        confirmationSnackbarMessage: "Appointment succesfully added!",
-        confirmationSnackbarOpen: true,
-        processed: true
-      })
+    .then(response => {
+        this.setState({
+          confirmationSnackbarMessage: "Appointment succesfully added!",
+          confirmationSnackbarOpen: true,
+          processed: true,       
+        })
+        if(this.state.finished) { 
+          this.setState({
+            stepIndex: this.state.stepIndex + 1
+          })
+          clearInterval(this.intervalId);
+        }
+      }
     ).catch(err => {
       console.log(err);
       return this.setState({
@@ -425,7 +432,6 @@ class Appointment extends Component {
                     />
                     </section>
                   {this.renderStepActions(2)}
-                  {this.state.finished}
                 </StepContent>
               </Step>
             </Stepper>
