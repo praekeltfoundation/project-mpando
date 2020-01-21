@@ -1,0 +1,51 @@
+/* GENERAL RESET */
+html, body {
+  background-color: var(--brand-blue-regal);
+}
+body {
+  background-color: var(--brand-blue-regal);
+  color: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+  font-family: 'Roboto','Helvetica Neue', sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+a {
+  display: block;
+}
+
+ul, ol, li {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* FORM RESET */
+form {
+  overflow: auto;
+}
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 1em 0;
+}
+
+
+/* BODY */
+#root {
+  position: relative;
+}
+
+.Logo {
+  max-width: 125px;
+}

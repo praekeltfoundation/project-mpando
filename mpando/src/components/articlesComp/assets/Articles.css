@@ -1,0 +1,120 @@
+.Articles {
+  font-size: 14px;
+  padding: 1em 0.5em;
+  position: relative;
+}
+
+.Articles-info {
+  color: #fff;
+}
+.Articles-info-wrapper {
+  overflow: auto;
+}
+.Articles-info__title {
+  color: var(--brand-blue-pelorous);
+  font-size: 18px;
+  padding: 0 0 5px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.Articles-info__heading {
+  color: var(--brand-blue-tranquil);
+  font-size: 20px;
+}
+.Articles-info__list {
+  list-style-position: inside;
+}
+.Articles-info__list-item {
+  list-style-type: circle;
+  margin: 0;
+}
+
+.Articles__list {
+  overflow: auto;
+}
+.Articles__item {
+  margin: 10px;
+  overflow: hidden;
+}
+.Articles__image {
+  height: 120px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.Articles__title {
+  font-size: 16px;
+}
+.Articles__text p {
+  margin: 0;
+}
+.Articles-media__source iframe {
+  background-color: var(--greyscale-grey-lightSlate);
+  width: 100%;
+}
+
+
+@media screen and (min-width: 768px) {
+  .Articles {
+    align-items: stretch;
+    display: flex;
+    padding: 2em 5%;
+    justify-content: space-between;
+  }
+
+  /* COLUMN ONE */
+  .Articles-media {
+    width: 55%;
+    height: 420px;
+  }
+
+  .Articles-media__source iframe {
+    height: 420px;
+  }
+
+  /* COLUMN TWO */
+  .Articles-info {
+    width: 45%;
+    height: 420px;
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  .Articles-info::-webkit-scrollbar {
+    width: 5px;
+  }
+  .Articles-info::-webkit-scrollbar-track {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgb(19,35,48);
+  }
+  .Articles-info::-webkit-scrollbar-thumb {
+    background-color: var(--brand-orange-bittersweet);
+    border-radius: 10px;
+    outline: 1px solid var(--brand-orange-bittersweet);
+  }
+  .Articles-info-wrapper {
+    padding: 0 1em;
+  }
+  .Articles-info__list {
+    padding: 5px 0;
+  }
+
+  .Articles__item {
+    display: flex;
+  }
+  .Articles__image {
+    border-radius: 2px;
+    margin: 0 10px 0 0;
+    height: 110px;
+    overflow: hidden;
+    width: 25%;
+  }
+  .Articles__excerpt {
+    width: 55%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .Articles {
+    padding: 2em 10%;
+  }
+}

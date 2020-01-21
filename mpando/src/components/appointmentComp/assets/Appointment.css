@@ -1,0 +1,47 @@
+.Appointment {
+  overflow: auto;
+}
+.Appointment-scheduler {
+  padding: 20px 0;
+}
+.Appointment-contact {
+  padding: 10px 0;
+}
+
+.Appointment-field {
+  width: 320px !important;
+  display: block !important;
+  margin: 1em 0;
+}
+.Appointment__card {
+  padding: 15px;
+}
+.Appointment__info {
+  color: var(--brand-blue-pelorous);
+  font-weight: bold;
+}
+.Call-to-actions {
+  overflow: auto;
+}
+
+.Call-to-actions .RaisedButton button {
+  background-color: var(--brand-blue-pelorous) !important;
+}
+
+.RaisedButtonBig {
+  display: block;
+  width: auto;
+  margin: 0 auto;
+}
+
+.Call-to-actions .FlatButton {
+  background: var( --secondary-blue-turquoise) !important;
+  color: #fff !important;
+  margin: 0 5px 0 5px !important;
+}
+
+@media screen and (min-width: 768px) {
+  .Appointment-scheduler {
+   padding: 20px 10% 1em;
+  }
+}
