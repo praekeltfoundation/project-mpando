@@ -17,7 +17,7 @@ function Aricles() {
   return (
     <div className="Articles">
       {articleMedia.map(media =>
-        <div className="Articles-media">
+        <div className="Articles-media" key={media.key}>
           <div className="Articles-media__source">
            <iframe
              title={media.title}
@@ -32,13 +32,13 @@ function Aricles() {
 
 
       {articles.map(post =>
-        <div className="Articles-info">
+        <div className="Articles-info" key={post.key}>
           <div className="Articles-info-wrapper">
             <h3 className="Articles-info__title">{post.title} </h3>
           </div>
           <div className="Articles__list">
             {post.articleItem.map(item =>
-              <div className="Articles__item">
+              <div className="Articles__item" key={item.key}>
                 <div className="Articles__image">
                   <img className="Articles__thumbnail"
                     alt={item.image.alt}

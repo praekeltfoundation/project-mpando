@@ -3,6 +3,7 @@
     {
       "media": {
         "iframe": {
+          "key": "0m",
           "type": true,
           "title": "Nurseconnect",
           "width": "560",
@@ -10,15 +11,18 @@
           "src": "https://www.youtube.com/embed/F4-Q9FBYWuE"
         },
         "image": {
+          "key": "0i",
           "type": false,
           "alt": "Nurseconnect",
           "src": "https://nurseconnect.org/media/images/Kholwa_is_getting_bullied_at_work_b.width-320.height-500.jpg"
         }
       },
       "info": {
+        "key": "01",
         "title": "Latest Stories",
         "articleItem": [
           {
+            "key": 0,
             "image": {
               "alt": "Nurseconnect",
               "src": "https://nurseconnect.org/media/images/Kholwa_is_getting_bullied_at_work_b.width-320.height-500.jpg"
@@ -28,6 +32,7 @@
             "link": " "
           },
           {
+            "key": 1,
             "image": {
               "alt": "Health",
               "src": "https://nurseconnect.org/media/images/An_HIV_pregnant_mom_learns_about_Pr.width-320.height-500.jpg"
@@ -37,6 +42,7 @@
             "link": " "
           },
           {
+            "key": 2,
             "image": {
               "alt": "Nurses burnout",
               "src": "https://nurseconnect.org/media/images/Mmabatho_realises_that_one_of_her_n.width-320.height-500.jpg"
@@ -46,6 +52,7 @@
             "link": " "
           },
           {
+            "key": 3,
             "image": {
               "alt": "Motivation",
               "src": "https://nurseconnect.org/media/images/Can_Mmabatho_inspire_and_motivate_h.width-320.height-500.jpg"
