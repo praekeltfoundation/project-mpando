@@ -13,7 +13,13 @@
   display: block !important;
   margin: 1em 0;
 }
-
+.Appointment__card {
+  padding: 15px;
+}
+.Appointment__info {
+  color: var(--brand-blue-pelorous);
+  font-weight: bold;
+}
 .Call-to-actions {
   overflow: auto;
 }

@@ -117,9 +117,7 @@ class Appointment extends Component {
     const dateString = moment(day).format("YYYY-DD-MM");
     return (
       this.state.schedule[dateString] === true ||
-      moment(day)
-        .startOf("day")
-        .diff(moment().startOf("day")) < 0
+      moment(day).startOf("day").diff(moment().startOf("day")) < 0
     );
   };
 
@@ -129,7 +127,7 @@ class Appointment extends Component {
     if (!this.state.isLoading) {
       const slots = [...Array(8).keys()];
       return slots.map(slot => {
-        console.log('Appointment Date',this.state.appointmentDate);
+       
         const appointmentDateString = moment(this.state.appointmentDate).format("YYYY-DD-MM");
         const time1 = moment().hour(9).minute(0).add(slot, "hours");
         const time2 = moment().hour(9).minute(0).add(slot + 1, "hours");
@@ -161,30 +159,27 @@ class Appointment extends Component {
 
 
   renderAppointmentConfirmation() {
-    const spanStyle = { color: "#2d9ec5" };
     return (
       <section>
-        <p>
-          Name:{" "}
-          <span style={spanStyle}>
+        <p>Name:
+          <span className="Appointment__info">
             {this.state.firstName} {this.state.lastName}
           </span>
         </p>
         <p>
-          Number: <span style={spanStyle}>{this.state.phone}</span>
+          Number: <span className="Appointment__info">{this.state.phone}</span>
         </p>
         <p>
-          Email: <span style={spanStyle}>{this.state.email}</span>
+          Email: <span className="Appointment__info">{this.state.email}</span>
         </p>
         <p>
-          Appointment:{" "}
-          <span style={spanStyle}>
-            {moment(this.state.appointmentDate).format(
-              "dddd[,] MMMM Do[,] YYYY"
-            )}
-          </span>{" "}
-          at{" "}
-          <span style={spanStyle}>
+          Appointment:
+          <span className="Appointment__info">
+            {moment(this.state.appointmentDate).format("YYYY-DD-MM")}
+          </span>
+        </p>
+        <p>Time:
+          <span className="Appointment__info">
             {moment()
               .hour(9)
               .minute(0)
@@ -249,7 +244,7 @@ class Appointment extends Component {
     }
 
     this.setState({
-      schedule: schedule // An Array
+      schedule: schedule 
     });
   };
 
@@ -263,10 +258,10 @@ class Appointment extends Component {
       data.validPhone && data.validEmail;
 
     const DatePickerExampleSimple = () => (
-      <div>
+      <div className="Appointment__date-picker">
         <DatePicker
           hintText="Select Date"
-          mode={smallScreen ? "portrait" : "landscape"}
+          mode="landscape"
           onChange={(n, date) => this.handleSetAppointmentDate(date)}
           shouldDisableDate={day => this.checkDisableDate(day)}
         />
@@ -291,11 +286,11 @@ class Appointment extends Component {
         <MediaBanner/>
         <Nav/>
         <div className="Appointment-scheduler">
-          <Card style={{ padding:"12px", height:smallScreen ? "100vh" : null }}>
+          <Card className="Appointment__card">
             <Stepper
               activeStep={stepIndex}
               orientation="vertical"
-              linear={false}>
+              linear={true}>
               <Step>
                 <StepLabel>
                   Choose an available day for your appointment
@@ -337,8 +332,8 @@ class Appointment extends Component {
               </Step>
               <Step>
                 <StepLabel>
-                  Share your contact information with us and we'll send you a
-                  reminder
+                  We require your contact information in order to send you a
+                  confirmation
                 </StepLabel>
                 <StepContent>
                   <section className="Appointment-contact">
@@ -388,16 +383,15 @@ class Appointment extends Component {
                       className="RaisedButtonBig"
                       label={
                         contactFormFilled
-                          ? "Schedule"
-                          : "Fill out your information to schedule"
+                          ? "Confirm Schedule"
+                          : "Fill out form to schedule"
                       }
                       labelPosition="before"
                       primary={true}
                       fullWidth={true}
                       onClick={() =>
                         this.setState({
-                          confirmationModalOpen: !this.state
-                            .confirmationModalOpen
+                          confirmationModalOpen: !this.state.confirmationModalOpen
                         })
                       }
                       disabled={!contactFormFilled || data.processed}
@@ -415,7 +409,7 @@ class Appointment extends Component {
             title="Confirm your appointment">
             {this.renderAppointmentConfirmation()}
           </Dialog>
-          <SnackBar
+          {/*<SnackBar
             open={confirmationSnackbarOpen || isLoading}
             message={
               isLoading ? "Loading... " : data.confirmationSnackbarMessage || ""
@@ -424,7 +418,7 @@ class Appointment extends Component {
             onRequestClose={() =>
               this.setState({ confirmationSnackbarOpen: false })
             }
-          />
+          />*/}
         </div>
       </div>
     );

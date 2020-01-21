@@ -30,7 +30,7 @@ const appointmentController = {
     // and saves the record to
     // the data base
 
-    console.log('Get messages',msg);
+    console.log('Get messages',requestBody);
     newappointment.save((err, saved) => {
       if (err) {
         console.log(`Produced:: ${err}`);
