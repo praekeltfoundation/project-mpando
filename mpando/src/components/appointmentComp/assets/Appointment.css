@@ -35,7 +35,7 @@
 }
 
 .Call-to-actions .FlatButton {
-  background: var( --secondary-blue-turquoise) !important;
+  background: var(--brand-orange-bittersweet) !important;
   color: #fff !important;
   margin: 0 5px 0 5px !important;
 }

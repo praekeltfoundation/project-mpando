@@ -8,8 +8,8 @@ function Search() {
   }
   return (
     <div className="search-wrapper">
-      <form class="form-search form-inline" action="/" id="body-search">
-        <button type="submit" class="search-submit"></button>
+      <form className="form-search form-inline" action="/" id="body-search">
+        <button type="submit" className="search-submit"></button>
         <input
           type="search"
           className="search-input"
