@@ -29,7 +29,7 @@ const cacheName = 'v1';
 
 
 /*Assets to cache
- The items to cache at this point should be something you don’t forsee 
+ The items to cache at this point should be something you don’t forsee
  changing often, such as base styles, scripts, fonts, logos, etc.
 */
 
@@ -58,7 +58,7 @@ export function register(config) {
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
         checkValidServiceWorker(swUrl, config);
-        
+
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(() => {
@@ -76,62 +76,6 @@ export function register(config) {
     console.log('Service Worker is not supported by browser.');
   }
 }
-
-window.addEventListener('install', function(event) {
-  // waitUntil() ensures that the Service Worker will not
-  // install until the code inside has successfully occurred
-  event.waitUntil(
-    // Create cache with the name supplied above and
-    // return a promise for it
-    caches.open(cacheName).then(function(cache) {
-        // Important to `return` the promise here to have `skipWaiting()`
-        // fire after the cache has been updated.
-        return cache.addAll(assetsToCache);
-    }).then(function() {
-      // `skipWaiting()` forces the waiting ServiceWorker to become the
-      // active ServiceWorker, triggering the `onactivate` event.
-      // Together with `Clients.claim()` this allows a worker to take effect
-      // immediately in the client(s).
-      return window.skipWaiting();
-    })
-  );
-});
-
-// Activate event
-// Be sure to call window.clients.claim()
-window.addEventListener('activate', function(event) {
-	// `claim()` sets this worker as the active worker for all clients that
-	// match the workers scope and triggers an `oncontrollerchange` event for
-	// the clients.
-	return window.clients.claim();
-});
-
-
-window.addEventListener('fetch', function(event) {
-  // Ignore non-get request like when accessing the admin panel
-  if (event.request.method !== 'GET') { return; }
-  // Don't try to handle non-secure assets because fetch will fail
-  if (/http:/.test(event.request.url)) { return; }
-  
-
-  // Here's where we cache all the things!
-  event.respondWith(
-    // Open the cache created when install
-    caches.open(cacheName).then(function(cache) {
-      // Go to the network to ask for that resource
-      return fetch(event.request).then(function(networkResponse) {
-        // Add a copy of the response to the cache (updating the old version)
-        cache.put(event.request, networkResponse.clone());
-        // Respond with it
-        return networkResponse;
-      }).catch(function() {
-        // If there is no internet connection, try to match the request
-        // to some of our cached resources
-        return cache.match(event.request);
-      })
-    })
-  );
-});
 
 function registerValidSW(swUrl, config) {
   navigator.serviceWorker
