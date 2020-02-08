@@ -21,26 +21,6 @@ const isLocalhost = Boolean(
 );
 
 
-/*You have to supply a name for your cache, this will
- allow us to remove an old one to avoid hitting disk
- space limits and displaying old resources
- */
-const cacheName = 'v1';
-
-
-/*Assets to cache
- The items to cache at this point should be something you don’t forsee
- changing often, such as base styles, scripts, fonts, logos, etc.
-*/
-
-const assetsToCache = [
-  `${process.env.PUBLIC_URL}/favicon.ico`,
-  `${process.env.PUBLIC_URL}/css/index.css`,
-  `${process.env.PUBLIC_URL}/images/logo.png`,
-  `${process.env.PUBLIC_URL}/images/logo-app-icon.png`
-];
-
-
 export function register(config) {
   //process.env.NODE_ENV === 'production' &&
   if ('serviceWorker' in navigator) {

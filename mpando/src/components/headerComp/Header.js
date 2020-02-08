@@ -20,7 +20,9 @@ function Header() {
           <Search/>
         </div>
         <div className="Header-list__item Header-list__item--subscribe">
-          <a className="subscribe-btn" href="https://wa.me/27645576224?text=Hello%20there%2C%0AThank%20you%20for%20your%20message%20and%20reaching%20out.%20%0AWarm%20regards"></a>
+          <a className="subscribe-btn" href="https://wa.me/27645576224?text=Hello%20there%2C%0AThank%20you%20for%20your%20message%20and%20reaching%20out.%20%0AWarm%20regards">
+            WhatsApp
+          </a>
         </div>
       </div>
     </header>

@@ -7,7 +7,7 @@ import Header from '../headerComp/Header';
 import Nav from '../navComp/Nav';
 import TextBanner from '../textBannerComp/TextBanner';
 import Articles from '../articlesComp/Articles';
-import Results from '../resultsSearchComp/Results';
+
 import Footer from '../footerComp/Footer';
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
@@ -22,7 +22,7 @@ class App extends Component {
             <Fragment>
               <Nav/>
               <TextBanner/>
-          
+
             </Fragment>
           </Route>
           <Route path='/appointment'>

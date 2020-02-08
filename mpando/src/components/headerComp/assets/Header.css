@@ -24,6 +24,7 @@
   height: 55px;
   padding: 5px;
   width: 55px;
+  overflow: hidden;
 }
 .subscribe-btn:hover {
   opacity: 0.5;
@@ -33,7 +34,7 @@
   background: url('./images/wa.png') no-repeat center/ 100%;
   content: "";
   display: block;
-  height: 40px;
+  height: 55px;
 }
 
 
