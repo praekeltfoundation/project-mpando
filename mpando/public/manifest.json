@@ -1,13 +1,6 @@
 {
-  "background_color": "#213d55",
-  "description" : "Workplace support few clicks away at your hands.",
-  "display": "standalone",
-  "lang" : "English",
-  "name": "NurseConnect",
-  "orientation" : "natural",
   "short_name": "NC",
-  "start_url": ".",
-  "theme_color": "#213d55",
+  "name": "NurseConnect",
   "icons": [
     {
       "src": "favicon.ico",
@@ -24,5 +17,9 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ]
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#dae8eb",
+  "background_color": "#213d55"
 }

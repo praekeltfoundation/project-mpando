@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import './assets/Search.css';
 
 class Search extends Component {
@@ -7,51 +8,42 @@ class Search extends Component {
     this.state = {
       hover: false,
       filtered: []
-    };
-    this.handleChange = this.handleChange.bind(this);
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  componentDidMount() {
+    this.setState({
+      filtered: this.props.articleLists
+    });
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      filtered: nextProps.articleLists
+    });
+  }
+  handleSubmit(e) {
+    let currentList = [];
+    let newList = [];
+    if(e.target.value !== ''){
+      currentList = this.props.articleLists;
+      newList = currentList.filter((article) => {
+        const filter = e.target.value;
+        return article.includes(filter);
+      });
+    } else {
+      newList = this.props.articleLists;
+    }
+    this.setState({
+      filtered: newList
+    });
+  }
   toogleHover = () => {
     this.setState({
       hover: !this.state.hover
     })
   };
-
-  componentDidMount() {
-    this.setState({
-      filtered: this.props.items
-    });
-  }
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      filtered: nextProps.items
-    });
-  }
-
-  handleChange(e) {
-    let currentList = [];
-    let newList = [];
-    if(e.target.value !== ''){
-      currentList = this.props.items;
-      newList = currentList.filter((item) => {
-        const filter = e.target.value;
-        console.log(item.includes(filter));
-        return item.includes(filter);
-      });
-
-      console.log(newList);
-    } else {
-      newList = this.props.items;
-    }
-
-    this.setState({
-      filtered: newList
-    });
-  }
-
   render() {
     let buttonStyle, inputStyleResponse, searchLabel;
-    console.log('Printing',buttonStyle);
     if(this.state.hover) {
       searchLabel = {visibility: 'visible', transition: 'visibility 0.5s ease'}
       inputStyleResponse = { padding:'15px 15px 15px 160px'};
@@ -69,16 +61,22 @@ class Search extends Component {
             style={buttonStyle}
             onMouseEnter={this.toogleHover}
             onMouseLeave={this.toogleHover}
+            onSubmit={this.handleSubmit}
           ></button>
           <input
             type="search"
             className="search-input"
-            placeholder="Search here"
-            value="Search"
+            placeholder="Search"
             style={inputStyleResponse}
-            onChange={this.handleChange}
           />
         </form>
+
+        <Link
+          to={{
+            pathname: "/results",
+            state: ['list one', 'list two', 'list three']
+          }}
+        />
       </div>
     );
   }
