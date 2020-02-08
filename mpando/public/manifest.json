@@ -1,6 +1,13 @@
 {
-  "short_name": "Nurseconnect",
-  "name": "NurseConnect PWA",
+  "background_color": "#213d55",
+  "description" : "Workplace support few clicks away at your hands.",
+  "display": "standalone",
+  "lang" : "English",
+  "name": "NurseConnect",
+  "orientation" : "natural",
+  "short_name": "NC",
+  "start_url": ".",
+  "theme_color": "#213d55",
   "icons": [
     {
       "src": "favicon.ico",
@@ -17,9 +24,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#213d55",
-  "background_color": "#213d55"
+  ]
 }

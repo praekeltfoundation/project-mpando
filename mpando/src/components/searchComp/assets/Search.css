@@ -10,19 +10,26 @@
   position: absolute;
   padding: 0;
   border: 0;
-  border-radius: 100%;
-  background: var(--brand-blue-pelorous) url(./images/search.png) no-repeat center/ 55%;
+  background-color: var(--brand-blue-pelorous);
+  background-image: url(./images/search.png);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  width: auto;
   height: 35px;
-  width: 35px;
-  cursor: pointer;
+  transition: width 0.5s ease;
 }
 
+.search-submit span {
+  color: #fff;
+  font-size: 14px;
+}
 input[type="search"] {
   border: none;
   border-radius: 20px;
   font-size: 16px;
   height: 43.5px;
-  padding: 15px 15px 15px 60px;
   outline: none;
+
+  transition: padding 0.5s ease;
   width: 100%;
 }
