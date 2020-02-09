@@ -1,25 +1,22 @@
 {
   "short_name": "Nurseconnect",
-  "name": "NurseConnect PWA",
+  "name": "Workplace support few clicks away at your hands.",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "48x48",
       "type": "image/x-icon"
     },
     {
-      "src": "images/logo-app-icon.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "images/logo-app-icon.png",
+      "src": "static/images/logo-app-icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "./",
   "display": "standalone",
-  "theme_color": "#213d55",
+  "theme_color": "#ff6655",
+  "orientation": "natural",
+  "description": "-",
   "background_color": "#213d55"
 }
