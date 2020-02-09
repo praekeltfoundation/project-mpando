@@ -26,6 +26,14 @@ function Nav() {
                 <span className="Nav-list__link--subtext"></span>
             </NavLink>
           </li>
+          <li className="Nav-list__item">
+            <NavLink
+              to="/faqs"
+              className="Nav-list__link"
+              activeClassName="Nav-list__active">
+                FAQs
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>

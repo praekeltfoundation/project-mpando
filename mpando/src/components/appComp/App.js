@@ -7,6 +7,7 @@ import Header from '../headerComp/Header';
 import Nav from '../navComp/Nav';
 import TextBanner from '../textBannerComp/TextBanner';
 import Articles from '../articlesComp/Articles';
+import FAQ from '../articlesComp/FAQ';
 
 import Terms from '../footerComp/TermsAndConditions';
 import Privacy from '../footerComp/PrivacyPolicy';
@@ -21,16 +22,17 @@ class App extends Component {
       <Router>
         <Header/>
         <Switch>
-          <Route path='/results'>
-            <Fragment>
-              <Nav/>
-              <TextBanner/>
-            </Fragment>
-          </Route>
           <Route path='/appointment'>
             <MuiThemeProvider>
               <Appointment/>
             </MuiThemeProvider>
+          </Route>
+          <Route path='/faqs'>
+            <Fragment>
+              <Nav/>
+              <TextBanner/>
+              <FAQ/>
+            </Fragment>
           </Route>
           <Route path='/terms-and-condition'>
             <Fragment>

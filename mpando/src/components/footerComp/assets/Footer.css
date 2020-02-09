@@ -48,6 +48,8 @@
   font-size: 18px;
 }
 .Usage-guide__strong {
+  font-size: 16px;
+  padding: 0 0 10px;
   color: var(--brand-orange-bittersweet);
   font-weight: bold;
 }

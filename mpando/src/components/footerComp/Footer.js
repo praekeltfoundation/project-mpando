@@ -11,15 +11,6 @@ function Footer() {
           <ul className="Menu-list">
           <li className="Menu-list__item">
             <NavLink
-              exact
-              to="/"
-              className="Menu-list__anchor"
-              activeClassName="Menu-list__active">
-                Home
-            </NavLink>
-          </li>
-          <li className="Menu-list__item">
-            <NavLink
               to="/terms-and-condition"
               className="Menu-list__anchor"
               activeClassName="Menu-list__active">
