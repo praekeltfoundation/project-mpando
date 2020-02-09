@@ -1,7 +1,8 @@
 html, body {
   background-color: #213d55;
+  color: #fff;
+  line-height: 1.2;
 }
-
 
 #loader-wrapper {
   position: fixed;
@@ -46,4 +47,10 @@ html, body {
   left: 15px;
   right: 15px;
   bottom: 15px;
+}
+
+
+
+.offline {
+  text-align: center;
 }

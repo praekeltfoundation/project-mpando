@@ -13,7 +13,6 @@ import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
 import TextField from "material-ui/TextField";
 
-import SnackBar from "material-ui/Snackbar";
 import Card from "material-ui/Card";
 
 import { Step,Stepper,StepLabel,StepContent } from "material-ui/Stepper";
@@ -76,11 +75,13 @@ class Appointment extends Component {
   componentWillUnmount(){
     clearInterval(this.intervalId);
   }
+  // eslint-disable-next-line
   validateEmail(email) {const regex =/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       return regex.test(email)
         ? this.setState({ email: email, validEmail: true })
         : this.setState({ validEmail: false });
     };
+  // eslint-disable-next-line
   validatePhone(phoneNumber) {const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
     return regex.test(phoneNumber)
       ? this.setState({ phone: phoneNumber, validPhone: true })
