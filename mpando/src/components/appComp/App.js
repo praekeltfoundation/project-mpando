@@ -8,10 +8,13 @@ import Nav from '../navComp/Nav';
 import TextBanner from '../textBannerComp/TextBanner';
 import Articles from '../articlesComp/Articles';
 
+import Terms from '../footerComp/TermsAndConditions';
+import Privacy from '../footerComp/PrivacyPolicy';
 import Footer from '../footerComp/Footer';
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Appointment from '../appointmentComp/Appointment';
+
 class App extends Component {
   render() {
     return (
@@ -22,13 +25,24 @@ class App extends Component {
             <Fragment>
               <Nav/>
               <TextBanner/>
-
             </Fragment>
           </Route>
           <Route path='/appointment'>
             <MuiThemeProvider>
               <Appointment/>
             </MuiThemeProvider>
+          </Route>
+          <Route path='/terms-and-condition'>
+            <Fragment>
+              <Nav/>
+              <Terms/>
+            </Fragment>
+          </Route>
+          <Route path='/privacy-policy'>
+            <Fragment>
+              <Nav/>
+              <Privacy/>
+            </Fragment>
           </Route>
           <Route path='/'>
             <Fragment>

@@ -25,10 +25,33 @@
   text-decoration: none;
   font-size: 20px;
 }
-
 .Logo__image {
   max-width: 125px;
 }
+
+.Usage-guide {
+  padding: 1em 0.5em;
+}
+.Usage-guide--inner {
+  overflow: auto;
+}
+.Usage-guide__headline {
+  color: var(--brand-orange-bittersweet);
+  font-size: 32px;
+}
+.Usage-guide__subheading {
+  color: var(--brand-blue-pelorous);
+  font-size: 22px;
+}
+.Usage-guide__title {
+  color: var(--brand-blue-spindle);
+  font-size: 18px;
+}
+.Usage-guide__strong {
+  color: var(--brand-orange-bittersweet);
+  font-weight: bold;
+}
+.Usage-guide__para {}
 
 @media screen and (min-width: 768px) {
   .Footer {
@@ -37,10 +60,18 @@
   .Footer--inner {
     padding: 10px 0 0;
   }
+
+  .Usage-guide {
+    padding: 3em 5%;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .Footer {
     padding: 3em 15%;
+  }
+
+  .Usage-guide {
+    padding: 3em 20%;
   }
 }

@@ -10,8 +10,7 @@ function Header() {
       <div className="Header-list">
         <div className="Header-list__item">
           <a className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
+            href="/"
             rel="noopener noreferrer">
             <img src={logo} className="Logo" alt="logo" />
           </a>

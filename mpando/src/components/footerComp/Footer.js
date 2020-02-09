@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import footerLogo from './assets/images/ndoh-logo.png';
 import './assets/Footer.css';
 
@@ -8,8 +9,31 @@ function Footer() {
       <div className="Footer--inner">
         <div className="Menu">
           <ul className="Menu-list">
-            <li className="Menu-list__item"><a href="/" className="Menu-list__anchor">Terms & Conditions</a></li>
-            <li className="Menu-list__item"><a href="/" className="Menu-list__anchor">Privacy Policy</a></li>
+          <li className="Menu-list__item">
+            <NavLink
+              exact
+              to="/"
+              className="Menu-list__anchor"
+              activeClassName="Menu-list__active">
+                Home
+            </NavLink>
+          </li>
+          <li className="Menu-list__item">
+            <NavLink
+              to="/terms-and-condition"
+              className="Menu-list__anchor"
+              activeClassName="Menu-list__active">
+                Terms & Conditions
+            </NavLink>
+          </li>
+          <li className="Menu-list__item">
+            <NavLink
+              to="/privacy-policy"
+              className="Menu-list__anchor"
+              activeClassName="Menu-list__active">
+                Privacy Policy
+            </NavLink>
+          </li>
           </ul>
         </div>
         <div className="Logo">
