@@ -39,6 +39,7 @@
   display: inline-block;
   font-size: 18px;
   text-decoration: none;
+  font-weight: bold;
 }
 .Nav-list__link:after {
   content: "";
@@ -56,7 +57,13 @@
   margin: 0 2px;
 }
 .Nav-list__active {
+  color: var(--brand-blue-regal);
   transition: border-bottom .5s ease-in-out;
+}
+.Nav-list__active:after {
+  background: url('./images/chevron.svg') no-repeat center/35%;
+  width: 22px;
+  height: 22px;
 }
 
 @media screen and (min-width: 768px) {
