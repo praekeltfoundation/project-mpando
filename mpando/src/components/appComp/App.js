@@ -7,6 +7,7 @@ import Header from '../headerComp/Header';
 import Nav from '../navComp/Nav';
 import TextBanner from '../textBannerComp/TextBanner';
 import Articles from '../articlesComp/Articles';
+import Howto from '../articlesComp/Howto';
 import FAQ from '../articlesComp/FAQ';
 
 import Terms from '../footerComp/TermsAndConditions';
@@ -61,6 +62,7 @@ class App extends Component {
               <Route path='/'>
                 <Fragment>
                   <TextBanner description="How to Install PWA" author="Installing the application on your mobile device allows you to easily return to the application from your mobile home screen"/>
+                  <Howto/>
                 </Fragment>
               </Route>
             </Switch>
