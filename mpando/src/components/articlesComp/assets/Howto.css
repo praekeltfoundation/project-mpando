@@ -2,15 +2,29 @@
   padding: 1em 0.5em;
 }
 
-
-@media screen and (min-width: 768px)  {
-  .Howto-guide {
-    padding: 0 5%;
-  }
+.Howto-guide__item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin: 2.5em 0;
 }
 
-@media screen and (min-width: 1024px) {
+.Howto-guide__images {
+  margin: 0 10px 0 0;
+}
+.Howto-guide__thumbnail {
+  border-radius: 5px;
+  border: 1px solid var(--brand-blue-regal);
+}
+
+.Howto-guide__instructions h3 {
+  color: var(--brand-orange-bittersweet);
+}
+.Howto-guide__instructions h4 {
+  color: var(--brand-blue-pelorous);
+}
+@media screen and (min-width: 768px)  {
   .Howto-guide {
-    padding: 2em 10%;
+    padding: 2em 5%;
   }
 }
