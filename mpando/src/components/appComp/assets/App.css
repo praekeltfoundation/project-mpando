@@ -1,1 +1,43 @@
+.Wrapper {
+  height: 100%;
+  overflow: auto;
+}
 
+.Sidebar {
+  background: var(--brand-blue-spindle);
+  border-right: 1px solid rgba(142,182,194, 0.12);
+  -webkit-box-shadow: 15px -10px 5px -15px rgba(4,24,40,1);
+  -moz-box-shadow: 15px -10px 5px -15px rgba(4,24,40,1);
+  box-shadow: 15px -10px 5px -15px rgba(4,24,40,1);
+  z-index: 99999999;
+}
+
+.Sidebar:after {
+  background: url('./images/momconnect-image.png') no-repeat 3.5em bottom/35%;
+  content: "";
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  width: 100%;
+}
+
+.Main {
+  background: var(--brand-blue-spindle);
+  position: relative;
+  overflow: auto;
+  height: 100%;
+}
+
+
+@media screen and (min-width: 768px) {
+  .Wrapper {
+    display: flex;
+  }
+  .Sidebar {
+    flex: 1;
+  }
+
+  .Main {
+    flex: 3;
+  }
+}

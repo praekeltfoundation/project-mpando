@@ -1,6 +1,7 @@
 /* GENERAL RESET */
 html, body {
   background-color: var(--brand-blue-regal);
+  height: 100%;
 }
 body {
   background-color: var(--brand-blue-regal);
@@ -45,6 +46,7 @@ fieldset {
 /* BODY */
 #root {
   position: relative;
+  height: 100%;
 }
 
 .Logo {

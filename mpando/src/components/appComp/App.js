@@ -20,41 +20,44 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Header/>
-        <Switch>
-          <Route path='/appointment'>
-            <MuiThemeProvider>
-              <Appointment/>
-            </MuiThemeProvider>
-          </Route>
-          <Route path='/faqs'>
-            <Fragment>
-              <Nav/>
-              <TextBanner/>
-              <FAQ/>
-            </Fragment>
-          </Route>
-          <Route path='/terms-and-condition'>
-            <Fragment>
-              <Nav/>
-              <Terms/>
-            </Fragment>
-          </Route>
-          <Route path='/privacy-policy'>
-            <Fragment>
-              <Nav/>
-              <Privacy/>
-            </Fragment>
-          </Route>
-          <Route path='/'>
-            <Fragment>
-              <Nav/>
-              <TextBanner/>
-              <Articles/>
-            </Fragment>
-          </Route>
-        </Switch>
-        <Footer/>
+        <div className="Wrapper">
+          <div className="Sidebar">
+            <Nav/>
+          </div>
+          <div className="Main">
+            <Header/>
+            <Switch>
+              <Route path='/appointment'>
+                <MuiThemeProvider>
+                  <Appointment/>
+                </MuiThemeProvider>
+              </Route>
+              <Route path='/faqs'>
+                <Fragment>
+                  <TextBanner/>
+                  <FAQ/>
+                </Fragment>
+              </Route>
+              <Route path='/terms-and-condition'>
+                <Fragment>
+                  <Terms/>
+                </Fragment>
+              </Route>
+              <Route path='/privacy-policy'>
+                <Fragment>
+                  <Privacy/>
+                </Fragment>
+              </Route>
+              <Route path='/'>
+                <Fragment>
+                  <TextBanner/>
+                  <Articles/>
+                </Fragment>
+              </Route>
+            </Switch>
+            <Footer/>
+          </div>
+        </div>
       </Router>
     )
   }

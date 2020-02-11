@@ -46,7 +46,7 @@ class Appointment extends Component {
       stepIndex: 0
     };
   }
-  
+
   handleNext = () => {
     const { stepIndex } = this.state;
     this.setState({
@@ -132,7 +132,7 @@ class Appointment extends Component {
     });
   };
 
-  /* 
+  /*
     checkDisableDate(day) {
       const dateString = moment(day).format("YYYY-DD-MM");
       return (
@@ -147,16 +147,16 @@ class Appointment extends Component {
     if (!this.state.isLoading) {
       const slots = [...Array(8).keys()];
       return slots.map(slot => {
-       
+
         const appointmentDateString = moment(this.state.appointmentDate).format("YYYY-DD-MM");
         const time1 = moment().hour(9).minute(0).add(slot, "hours");
         const time2 = moment().hour(9).minute(0).add(slot + 1, "hours");
-       
+
         {/*
           const scheduleDisabled = this.state.schedule[appointmentDateString] ?
           this.state.schedule[
             moment(this.state.appointmentDate).format("YYYY-DD-MM")
-          ][slot] 
+          ][slot]
           : false;
         */}
         const meridiemDisabled = this.state.appointmentMeridiem
@@ -228,9 +228,9 @@ class Appointment extends Component {
         this.setState({
           confirmationSnackbarMessage: "Appointment succesfully added!",
           confirmationSnackbarOpen: true,
-          processed: true,       
+          processed: true,
         })
-        if(this.state.finished) { 
+        if(this.state.finished) {
           this.setState({
             stepIndex: this.state.stepIndex + 1
           })
@@ -250,7 +250,7 @@ class Appointment extends Component {
     const appointments = response;
     const initialSchedule = {};
     initialSchedule[dayObject.format("YYYY-DD-MM")] = true;
-   
+
     const schedule = !appointments.length ? initialSchedule
       : appointments.reduce((currentSchedule, appointment) => {
         const { slot_date, slot_time } = appointment;
@@ -271,14 +271,14 @@ class Appointment extends Component {
 
     if(schedule) {
       this.setState({
-        schedule: schedule 
+        schedule: schedule
       });
     } else {
       this.setState({
         [TODAY]: true
       });
     }
-   
+
   };
 
   render() {
@@ -319,7 +319,6 @@ class Appointment extends Component {
     return (
       <div className="Appointment">
         <MediaBanner/>
-        <Nav/>
         <div className="Appointment-scheduler">
           <Card className="Appointment__card">
             <Stepper
