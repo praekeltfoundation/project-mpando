@@ -10,7 +10,7 @@ class Aricles extends Component {
     };
   }
 
-  /*componentDidMount() {
+  componentDidMount() {
     $.ajax({
       url: '/data/articles.json',
       dataType: 'json',
@@ -18,7 +18,7 @@ class Aricles extends Component {
         this.setState({datajson: res});
       }.bind(this)
     });
-  }*/
+  }
 
   render() {
     return (

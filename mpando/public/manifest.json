@@ -1,6 +1,6 @@
 {
   "short_name": "Nurseconnect",
-  "name": "Nurseconnect",
+  "name": "Nurseconnect - Workplace support",
   "icons": [
     {
       "src": "favicon.ico",
@@ -17,6 +17,6 @@
   "display": "standalone",
   "theme_color": "#ff6655",
   "orientation": "natural",
-  "description": " Workplace support few clicks away at your hands.",
+  "description": "Workplace support few clicks away at your hands.",
   "background_color": "#213d55"
 }
