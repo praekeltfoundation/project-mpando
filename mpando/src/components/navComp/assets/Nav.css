@@ -61,9 +61,11 @@
   transition: border-bottom .5s ease-in-out;
 }
 .Nav-list__active:after {
-  background: url('./images/chevron.svg') no-repeat center/35%;
-  width: 22px;
-  height: 22px;
+  background: url('./images/chevron.png') no-repeat center/35%;
+  width: 15px;
+  height: 15px;
+  margin: 7px 8px;
+  position: absolute;
 }
 
 @media screen and (min-width: 768px) {
