@@ -12,15 +12,6 @@
   z-index: 99999999;
 }
 
-.Sidebar:after {
-  background: url('./images/momconnect-image.png') no-repeat 3.5em bottom/35%;
-  content: "";
-  display: flex;
-  justify-content: center;
-  height: 500px;
-  width: 100%;
-}
-
 .Main {
   background: var(--brand-blue-spindle);
   position: relative;
@@ -35,6 +26,15 @@
   }
   .Sidebar {
     flex: 1;
+  }
+
+  .Sidebar:after {
+    background: url('./images/momconnect-image.png') no-repeat 3.5em bottom/35%;
+    content: "";
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    width: 100%;
   }
 
   .Main {

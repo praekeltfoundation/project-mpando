@@ -27,7 +27,7 @@
   padding: 0;
 }
 .Nav-list__item {
-  display: block;
+  display: inline-block;
   padding: 5px 8px;
   margin: 0 5px;
 }
@@ -57,6 +57,9 @@
 @media screen and (min-width: 768px) {
   .Navigation {
     padding: 2em 5%;
+  }
+  .Nav-list__item {
+    display: block;
   }
 }
 

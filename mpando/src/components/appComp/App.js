@@ -25,33 +25,42 @@ class App extends Component {
             <Nav/>
           </div>
           <div className="Main">
-            <Header/>
             <Switch>
+              <Route path='/articles'>
+                <Header/>
+                <Fragment>
+                  <TextBanner description="Workplace support in the palm of your hands." author="By Nurseconnect"/>
+                    <Articles/>
+                </Fragment>
+              </Route>
               <Route path='/appointment'>
+                <Header/>
                 <MuiThemeProvider>
                   <Appointment/>
                 </MuiThemeProvider>
               </Route>
               <Route path='/faqs'>
+                <Header/>
                 <Fragment>
-                  <TextBanner/>
+                  <TextBanner description="Workplace support in the palm of your hands." author="By Nurseconnect"/>
                   <FAQ/>
                 </Fragment>
               </Route>
               <Route path='/terms-and-condition'>
+                <Header/>
                 <Fragment>
                   <Terms/>
                 </Fragment>
               </Route>
               <Route path='/privacy-policy'>
                 <Fragment>
+                  <Header/>
                   <Privacy/>
                 </Fragment>
               </Route>
               <Route path='/'>
                 <Fragment>
-                  <TextBanner/>
-                  <Articles/>
+                  <TextBanner description="How to Install PWA" author="Installing the application on your mobile device allows you to easily return to the application from your mobile home screen"/>
                 </Fragment>
               </Route>
             </Switch>

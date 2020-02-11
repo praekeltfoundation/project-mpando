@@ -5,7 +5,7 @@ html, body {
 }
 body {
   background-color: var(--brand-blue-regal);
-  color: #fff;
+  color: var(--brand-blue-regal);
   line-height: 1.5;
   font-size: 16px;
   font-family: 'Roboto','Helvetica Neue', sans-serif;

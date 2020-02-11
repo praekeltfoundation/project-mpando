@@ -23,7 +23,7 @@ class Aricles extends Component {
   render() {
     return (
       <p>
-        -
+        {this.state.data}
       </p>
     )
   }
