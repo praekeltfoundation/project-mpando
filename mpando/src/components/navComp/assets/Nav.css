@@ -19,8 +19,8 @@
   display: flex;
   position: relative;
   margin: 0 auto;
+  z-index: 999999999;
 }
-
 
 .Nav-list {
   margin: 0;
@@ -28,19 +28,26 @@
 }
 .Nav-list__item {
   display: inline-block;
-  padding: 5px 8px;
+  padding: 15px 5px;
   margin: 0 5px;
+  position: relative;
+  border-bottom: 2px solid var(--brand-blue-pelorous);
 }
+
 .Nav-list__link {
   color: var(--brand-blue-pelorous);
-  display: block;
+  display: inline-block;
   font-size: 18px;
   text-decoration: none;
-  border-bottom: 2px solid transparent;
 }
-.Nav-list__link:hover,
-.Nav-list__link:focus {
-  border-bottom: 2px solid var(--brand-blue-pelorous);
+.Nav-list__link:after {
+  content: "";
+  display: inline-block;
+  background: url('./images/chevron-blue.png') no-repeat center/35%;
+  width: 15px;
+  height: 15px;
+  margin: 7px 8px;
+  position: absolute;
 }
 
 .Nav-list__link--subtext {
@@ -48,15 +55,13 @@
   font-size: 15px;
   margin: 0 2px;
 }
-
 .Nav-list__active {
-  border-bottom: 2px solid var(--brand-blue-pelorous);
   transition: border-bottom .5s ease-in-out;
 }
 
 @media screen and (min-width: 768px) {
   .Navigation {
-    padding: 2em 5%;
+    padding: 5em 5%;
   }
   .Nav-list__item {
     display: block;
@@ -65,6 +70,6 @@
 
 @media screen and (min-width: 1024px) {
   .Navigation {
-    padding: 2em 10% 1em;
+    padding: 5em 10% 1em;
   }
 }

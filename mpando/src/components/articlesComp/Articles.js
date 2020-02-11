@@ -12,7 +12,7 @@ class Aricles extends Component {
 
   componentDidMount() {
     $.ajax({
-      url: '/data/articles.json',
+      url: './articles.json',
       dataType: 'json',
       success: function(res) {
         this.setState({datajson: res});

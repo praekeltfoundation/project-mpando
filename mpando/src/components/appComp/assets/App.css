@@ -9,6 +9,7 @@
   -webkit-box-shadow: 15px -10px 5px -15px rgba(4,24,40,1);
   -moz-box-shadow: 15px -10px 5px -15px rgba(4,24,40,1);
   box-shadow: 15px -10px 5px -15px rgba(4,24,40,1);
+  position: relative;
   z-index: 99999999;
 }
 
@@ -33,6 +34,8 @@
     content: "";
     display: flex;
     justify-content: center;
+    position: absolute;
+    bottom: 0;
     height: 500px;
     width: 100%;
   }
