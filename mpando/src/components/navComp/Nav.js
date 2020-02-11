@@ -14,7 +14,7 @@ function Nav() {
               to="/"
               className="Nav-list__link"
               activeClassName="Nav-list__active">
-                Home
+                How to install App
             </NavLink>
           </li>
           <li className="Nav-list__item">
