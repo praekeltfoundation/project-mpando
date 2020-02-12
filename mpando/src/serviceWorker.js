@@ -32,7 +32,9 @@ export function register(config) {
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
+
+      //USE CUSTOM SERVICE WORKER INSTEAD OF THE CURRENT FILE
+      const swUrl = `${process.env.PUBLIC_URL}/sw.js`; //SERVICE WORKER FOR CRA REACT.JS 
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.

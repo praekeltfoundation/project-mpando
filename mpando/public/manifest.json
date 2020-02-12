@@ -15,12 +15,6 @@
      "density": "1.5"
     },
     {
-      "src": "favicon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/x-icon",
-      "density": "4.0"
-    },
-    {
      "src": "static/images/theme-spindle/android-icon-96x96.png",
      "sizes": "96x96",
      "type": "image/png",

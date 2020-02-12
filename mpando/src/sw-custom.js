@@ -1,9 +1,15 @@
+import {precacheAndRoute} from 'workbox-precaching';
+
+precacheAndRoute(self.__WB_MANIFEST);
+
 if ("function" === typeof importScripts) {
-  // Global workbox
+
   importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js");
+
+  // Global workbox
   if (workbox) {
     console.log("Workbox is loaded");    // Disable logging
-    workbox.setConfig({ debug: false });
+    workbox.setConfig({ debug: true });
     //`generateSW` and `generateSWString` provide the option
     // to force update an exiting service worker.
     // Since we're using `injectManifest` to build SW,
@@ -25,7 +31,9 @@ if ("function" === typeof importScripts) {
           })
         ]
       })
-    );    // Image caching
+    );
+
+    // Image caching
     workbox.routing.registerRoute(
       /\.(?:png|gif|jpg|jpeg|svg)$/,
       workbox.strategies.cacheFirst({
@@ -38,6 +46,7 @@ if ("function" === typeof importScripts) {
         ]
       })
     );
+
     // JS, CSS caching
     workbox.routing.registerRoute(
       /\.(?:js|css)$/,
