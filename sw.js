@@ -1,6 +1,6 @@
 if ("function" === typeof importScripts) {
-  importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs");
-  //"https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js",
+  //importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs");
+  "https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js",
 
   // Global workbox
   if (workbox) {
@@ -48,9 +48,23 @@ if ("function" === typeof importScripts) {
       window.location.reload();
     });
 
+    workbox.routing.registerRoute(
+      //new RegExp('\.png$'),
+      /\.html$/,
+      workbox.strategies.cacheFirst({
+        cacheName: "offline",
+        plugins: [
+          new workbox.expiration.Plugin({
+            maxEntries: 60,
+            maxAgeSeconds: 30 * 24 * 60 * 60 // 30 Days
+          })
+        ]
+      })
+    );
+
     // Manual injection point for manifest files.
     // All assets under build/ and 5MB sizes are precached.
-     workbox.precaching.precacheAndRoute([
+    //workbox.precaching.precacheAndRoute([
   {
     "url": "favicon-theme-spindle.png",
     "revision": "bc1395725bc5dd4ad2c42b4fec110ac9"
