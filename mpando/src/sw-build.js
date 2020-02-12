@@ -16,13 +16,15 @@ const buildSW = () => {
     globDirectory: "build",
     globPatterns: [
       "**/*.{js,css,html,png}"
-    ],
-    maximumFileSizeToCacheInBytes: 5 * 1024 * 1024
+    ]
+    //,maximumFileSizeToCacheInBytes: 5 * 1024 * 1024
   }).then(({ count, size, warnings }) => {
     warnings.forEach(console.warn);
-    console.info(`${count} files will be precached,totaling ${size/(1024 * 1024)} MBs.`);
+    console.info(`${count} files will be precached`); //,totaling ${size/(1024 * 1024)} MBs.
   }).catch((err) => {
     console.log(`${err}`);
     return;
   });
-};buildSW();
+};
+
+buildSW();

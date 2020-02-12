@@ -34,7 +34,7 @@ export function register(config) {
     window.addEventListener('load', () => {
 
       //USE CUSTOM SERVICE WORKER INSTEAD OF THE CURRENT FILE
-      const swUrl = `${process.env.PUBLIC_URL}/sw.js`; //SERVICE WORKER FOR CRA REACT.JS 
+      const swUrl = `${process.env.PUBLIC_URL}/sw.js`; //SERVICE WORKER FOR CRA REACT.JS
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
@@ -56,9 +56,9 @@ export function register(config) {
   }
 }
 
-function registerValidSW(swUrl, config) {
+function registerValidSW(swUrlPlaceHolder, config) {
   navigator.serviceWorker
-    .register(swUrl)
+    .register(swUrlPlaceHolder)
     .then(registration => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
@@ -100,9 +100,9 @@ function registerValidSW(swUrl, config) {
     });
 }
 
-function checkValidServiceWorker(swUrl, config) {
+function checkValidServiceWorker(swUrlPlaceHolder2, config) {
   // Check if the service worker can be found. If it can't reload the page.
-  fetch(swUrl, {
+  fetch(swUrlPlaceHolder2, {
     headers: { 'Service-Worker': 'script' }
   })
     .then(response => {
@@ -120,7 +120,7 @@ function checkValidServiceWorker(swUrl, config) {
         });
       } else {
         // Service worker found. Proceed as normal.
-        registerValidSW(swUrl, config);
+        registerValidSW(swUrlPlaceHolder2, config);
       }
     })
     .catch(() => {
