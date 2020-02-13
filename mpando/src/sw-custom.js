@@ -48,6 +48,20 @@ if ("function" === typeof importScripts) {
       window.location.reload();
     });
 
+    workbox.precaching.precacheAndRoute([
+      {
+        "url": "offline.html",
+        "revision": "a0c2c898b138c21bc8771400782ad0c6"
+      },
+      {
+        "url": "static/css/index.css",
+        "revision": "806e78ea570f8ccc782873964b17e0b6"
+      },
+      {
+        "url": "static/images/logo.png",
+        "revision": "8895bf9504e422cc41442e4682efd59a"
+      },
+    ]);
     workbox.routing.registerRoute(
       //new RegExp('\.png$'),
       /\.html$/,
@@ -64,7 +78,7 @@ if ("function" === typeof importScripts) {
 
     // Manual injection point for manifest files.
     // All assets under build/ and 5MB sizes are precached.
-    //workbox.precaching.precacheAndRoute([]);
+  
     // workbox.routing.registerRoute(
     //   new RegExp("https://fonts.(?:.googlepis|gstatic).com/(.*)"),
     //   workbox.strategies.cacheFirst({
