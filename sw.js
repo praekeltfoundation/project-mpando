@@ -1,7 +1,4 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs');
- const wb = new Workbox('/sw.js')
 
- console.log(wb);
 if ("function" === typeof importScripts) {
   importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js');
   // Global workbox
@@ -9,38 +6,6 @@ if ("function" === typeof importScripts) {
      console.log(workbox, self);
     console.log("Workbox is loaded");    // Disable logging
     workbox.setConfig({ debug: true });
-
-    // Add an event listener to detect when the registered
-    // service worker has installed but is waiting to activate
-    self.addEventListener("waiting", (event) => {
-      // `event.wasWaitingBeforeRegister` will be false if this is
-      // the first time the updated service worker is waiting.
-      // When `event.wasWaitingBeforeRegister` is true, a previously
-      // updated same service worker is still waiting.
-      // You may want to customize the UI prompt accordingly.
-      const prompt = createUIPrompt({
-        onAccept: async () => {
-          // Assuming the user accepted the update, set up a listener
-          // that will reload the page as soon as the previously waiting
-          // service worker has taken control.
-          self.addEventListener("controlling", (event) => {
-            window.location.reload();
-          });
-          // Send a message telling the service worker to skip waiting.
-          // This will trigger the `controlling` event handler above.
-          // Note: for this to work, you have to add a message
-          // listener in your service worker. See below.
-          self.addEventListener("message", (event) => {
-            if(event.data && event.data.type === "SKIP_WAITING"){
-              skipWaiting();
-            }
-          });
-        },
-        onReject: () => {
-          prompt.dismiss();
-        }
-      })
-    });
 
     //`generateSW` and `generateSWString` provide the option
     // to force update an exiting service worker.
