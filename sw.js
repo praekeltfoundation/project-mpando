@@ -1,11 +1,12 @@
-import {Workbox} from 'https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs';
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs');
  const wb = new Workbox('/sw.js')
 
- 
+ console.log(wb);
 if ("function" === typeof importScripts) {
   importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js');
   // Global workbox
   if (workbox) {
+     console.log(workbox);
     console.log("Workbox is loaded");    // Disable logging
     workbox.setConfig({ debug: true });
 
@@ -76,12 +77,12 @@ if ("function" === typeof importScripts) {
     "revision": "330f3295d9d0609cddbd72e31c08aa11"
   },
   {
-    "url": "static/js/main.a7f8d78b.chunk.js",
-    "revision": "2241c94cdf9783a8adbec8b439da793d"
+    "url": "static/js/main.d9dc9f94.chunk.js",
+    "revision": "b855f5fe8e3817eb766b3cd0afd904dd"
   },
   {
-    "url": "static/js/main.a7f8d78b.chunk.js.map",
-    "revision": "23b73a82556a9c936542109968ead7d2"
+    "url": "static/js/main.d9dc9f94.chunk.js.map",
+    "revision": "dfdcf521577b2b161218c34d521a954b"
   },
   {
     "url": "static/js/runtime-main.5274d17f.js",
