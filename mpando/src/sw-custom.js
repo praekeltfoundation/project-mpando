@@ -1,7 +1,5 @@
 if ("function" === typeof importScripts) {
-  //importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs");
-  "https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js",
-
+  importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js');
   // Global workbox
   if (workbox) {
     console.log("Workbox is loaded");    // Disable logging
@@ -50,61 +48,44 @@ if ("function" === typeof importScripts) {
 
     workbox.precaching.precacheAndRoute([]);
     workbox.routing.registerRoute(
-      //new RegExp('\.png$'),
-      /\.html$/,
+      /\.css$/,
+      workbox.strategies.staleWhileRevalidate({
+        cacheName: 'css-cache'
+      })
+    );
+
+    workbox.routing.registerRoute(
+      /\.js$/,
+      workbox.strategies.staleWhileRevalidate({
+        cacheName: 'js-cache'
+      })
+    );
+
+    // Image caching
+    workbox.routing.registerRoute(
+      /\.(?:png|gif|jpg|jpeg|svg)$/,
       workbox.strategies.cacheFirst({
-        cacheName: "offline",
+        cacheName: "images-cache",
         plugins: [
           new workbox.expiration.Plugin({
-            maxEntries: 60,
-            maxAgeSeconds: 30 * 24 * 60 * 60 // 30 Days
+            maxEntries: 20,
+            maxAgeSeconds: 7 * 24 * 60 * 60 // Weekly cache
           })
         ]
       })
     );
 
-    // Manual injection point for manifest files.
-    // All assets under build/ and 5MB sizes are precached.
-
-    // workbox.routing.registerRoute(
-    //   new RegExp("https://fonts.(?:.googlepis|gstatic).com/(.*)"),
-    //   workbox.strategies.cacheFirst({
-    //     cacheName: "googleapis",
-    //     plugins: [
-    //       new workbox.expiration.Plugin({
-    //         maxEntries: 30
-    //       })
-    //     ]
-    //   })
-    // );
-
-    // Image caching
-    // workbox.routing.registerRoute(
-    //   /\.(?:png|gif|jpg|jpeg|svg)$/,
-    //   workbox.strategies.cacheFirst({
-    //     cacheName: "images",
-    //     plugins: [
-    //       new workbox.expiration.Plugin({
-    //         maxEntries: 60,
-    //         maxAgeSeconds: 30 * 24 * 60 * 60 // 30 Days
-    //       })
-    //     ]
-    //   })
-    // );
-
-    // JS, CSS caching
-    // workbox.routing.registerRoute(
-    //   /\.(?:js|css)$/,
-    //   workbox.strategies.staleWhileRevalidate({
-    //     cacheName: "static-resources",
-    //     plugins: [
-    //       new workbox.expiration.Plugin({
-    //         maxEntries: 60,
-    //         maxAgeSeconds: 20 * 24 * 60 * 60 // 20 Days
-    //       })
-    //     ]
-    //   })
-    // );
+    workbox.routing.registerRoute(
+      new RegExp("https://fonts.(?:.googlepis|gstatic).com/(.*)"),
+      workbox.strategies.cacheFirst({
+        cacheName: "googleapis",
+        plugins: [
+          new workbox.expiration.Plugin({
+            maxEntries: 30
+          })
+        ]
+      })
+    );
 
   } else {
     console.error("Workbox could not be loaded. No offline support");
