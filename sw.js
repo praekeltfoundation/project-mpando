@@ -1,7 +1,5 @@
-
-
-
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js','https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs');
+if ("function" === typeof importScripts) {
+  importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js','https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs');
   // Global workbox
   if (workbox) {
     console.log("Workbox is loaded");    // Disable logging
@@ -137,4 +135,4 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox
   } else {
     console.error("Workbox could not be loaded. No offline support");
   }
-//if ("function" === typeof importScripts) {}
+}
