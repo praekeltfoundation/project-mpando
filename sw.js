@@ -1,3 +1,7 @@
+import {Workbox} from 'https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs';
+ const wb = new Workbox('/sw.js')
+
+ 
 if ("function" === typeof importScripts) {
   importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js');
   // Global workbox
