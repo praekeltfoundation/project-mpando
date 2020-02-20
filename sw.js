@@ -1,5 +1,5 @@
 if ("function" === typeof importScripts) {
-  importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js','https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs');
+  importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js');
   // Global workbox
   if (workbox) {
     console.log("Workbox is loaded");    // Disable logging
@@ -50,7 +50,6 @@ if ("function" === typeof importScripts) {
       })
     );
 
-    // Image caching
     workbox.routing.registerRoute(
       /\.(?:png|gif|jpg|jpeg|svg)$/,
       workbox.strategies.cacheFirst({
