@@ -58,16 +58,36 @@ if ("function" === typeof importScripts) {
   {
     "url": "static/css/index.css",
     "revision": "806e78ea570f8ccc782873964b17e0b6"
+  },
+  {
+    "url": "static/js/2.a0aa9681.chunk.js",
+    "revision": "073c9fe0ca6a90d2d1fb01d17bfdee6a"
+  },
+  {
+    "url": "static/js/2.a0aa9681.chunk.js.LICENSE",
+    "revision": "d7798c023baac53e2010f08a9edaab04"
+  },
+  {
+    "url": "static/js/2.a0aa9681.chunk.js.map",
+    "revision": "330f3295d9d0609cddbd72e31c08aa11"
+  },
+  {
+    "url": "static/js/main.a7f8d78b.chunk.js",
+    "revision": "2241c94cdf9783a8adbec8b439da793d"
+  },
+  {
+    "url": "static/js/main.a7f8d78b.chunk.js.map",
+    "revision": "23b73a82556a9c936542109968ead7d2"
+  },
+  {
+    "url": "static/js/runtime-main.5274d17f.js",
+    "revision": "500d76c9345a2cfaef351e5e6e14f0e9"
+  },
+  {
+    "url": "static/js/runtime-main.5274d17f.js.map",
+    "revision": "5a68cc398de81f4f930201fd29211f13"
   }
 ]);
-
-    workbox.routing.registerRoute(
-      'offline.html',
-      workbox.strategies.cacheFirst({
-        cacheName: 'offline-cache'
-      })
-    );
-
     workbox.routing.registerRoute(
       /\.css$/,
       workbox.strategies.staleWhileRevalidate({
