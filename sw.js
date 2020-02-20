@@ -1,7 +1,6 @@
 if ("function" === typeof importScripts) {
-  console.log(importScripts);
-  //importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs");
-  importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js');
+  console.log('Import func',importScripts);
+  importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js','https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs');
 
   // Global workbox
   if (workbox) {
