@@ -1,4 +1,4 @@
-importScripts("/precache-manifest.f169daa91ab4c96d46edaeac8788698f.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.9a8cb757296d5a775711c5e01f3fab32.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
   // Global workbox
   if (workbox) {
@@ -60,12 +60,12 @@ importScripts("/precache-manifest.f169daa91ab4c96d46edaeac8788698f.js", "https:/
 
     workbox.routing.registerRoute(
       /\.(?:png|gif|jpg|jpeg|svg)$/,
-      workbox.strategies.cacheFirst({
+      workbox.strategies.networkFirst({
         cacheName: "images-cache",
         plugins: [
           new workbox.expiration.Plugin({
-            maxEntries: 20,
-            maxAgeSeconds: 7 * 24 * 60 * 60 // Weekly cache
+            maxEntries: 5,
+            maxAgeSeconds: 1 * 24 * 60 * 60 // Weekly cache
           })
         ]
       })
