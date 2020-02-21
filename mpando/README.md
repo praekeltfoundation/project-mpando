@@ -6,6 +6,7 @@
 
 ### Workbox Webpack Plugin Setup
 https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
+https://developers.google.com/web/tools/workbox/guides/precache-files/webpack
 
 
 [General Notes](https://docs.google.com/document/d/1VY4wNqNYjMoUMRmQzwlGtezvSg42CwofERSJBAQvvXk/edit)
