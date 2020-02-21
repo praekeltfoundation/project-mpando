@@ -1,4 +1,4 @@
-importScripts("/precache-manifest.656c52e24654f7006fed86d8e529cacb.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.813cfe30174b496d2e0dcb3446998a7f.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
   // Global workbox
   if (workbox) {
@@ -12,6 +12,8 @@ importScripts("/precache-manifest.656c52e24654f7006fed86d8e529cacb.js", "https:/
 
     // Add an event listener to detect when the registered
     // service worker has installed but is waiting to activate
+    const updateButton = document.getElementById("#app-update");
+    console.log('Self ukhulama ini?',self);
     self.addEventListener("waiting", (event) => {
       console.log('The event::',event);
       // `event.wasWaitingBeforeRegister` will be false if this is
