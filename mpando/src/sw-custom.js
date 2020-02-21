@@ -1,6 +1,4 @@
 if ("function" === typeof importScripts) {
-  importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js');
-
   // Global workbox
   if (workbox) {
     console.log("Workbox is loaded");    // Disable logging

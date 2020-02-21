@@ -628,26 +628,11 @@ module.exports = function(webpackEnv) {
         }),*/
 
         /* ADD injectManifest plugin */
-        new WorkboxWebpackPlugin.injectManifest({
+        new WorkboxWebpackPlugin.InjectManifest({
           exclude: [/\.map$/, /asset-manifest\.json$/],
-          importWorkboxFrom: 'cdn',
           swSrc: "src/sw-custom.js",
-          swDest: "build/sw.js",
-          globDirectory: "build",
-          globPatterns: [
-            "offline.html",
-            "static/images/logo.png",
-            "static/css/index.css",
-            "static/js/*",
-          ],
-          maximumFileSizeToCacheInBytes: 5 * 1024 * 1024
-        }).then(({count, size, warnings}) => {
-          warnings.forEach(console.warn);
-          console.log(`${count} files will be precached, totaling ${size} bytes.`);
-        }).catch((err) => {
-          console.log(`${err}`);
-          return;
-        }),
+          swDest: "sw.js"
+       }),
 
 
 
