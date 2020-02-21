@@ -47,7 +47,7 @@ if ("function" === typeof importScripts) {
       window.location.reload();
     });
 
-    workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+    workbox.precaching.precacheAndRoute([]);
     workbox.routing.registerRoute(
       /\.css$/,
       workbox.strategies.staleWhileRevalidate({
