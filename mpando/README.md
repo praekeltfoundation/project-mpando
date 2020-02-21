@@ -10,6 +10,3 @@ https://developers.google.com/web/tools/workbox/guides/precache-files/webpack
 
 
 [General Notes](https://docs.google.com/document/d/1VY4wNqNYjMoUMRmQzwlGtezvSg42CwofERSJBAQvvXk/edit)
-
-https://karannagupta.com/using-custom-workbox-service-workers-with-create-react-app/
-https://medium.com/@chinmaya.cp/custom-service-worker-in-cra-create-react-app-3b401d24b875
