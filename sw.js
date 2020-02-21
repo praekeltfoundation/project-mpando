@@ -1,9 +1,7 @@
 importScripts("/precache-manifest.f169daa91ab4c96d46edaeac8788698f.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
-if ("function" === typeof importScripts) {
-  importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js');
-
-  // Global workbox
+// Global workbox
+console.log(workbox);
   if (workbox) {
     console.log("Workbox is loaded");    // Disable logging
     workbox.setConfig({ debug: true });
@@ -49,7 +47,7 @@ if ("function" === typeof importScripts) {
       window.location.reload();
     });
 
-    workbox.precaching.precacheAndRoute([]);
+    workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
     workbox.routing.registerRoute(
       /\.css$/,
       workbox.strategies.staleWhileRevalidate({
@@ -93,5 +91,4 @@ if ("function" === typeof importScripts) {
   } else {
     console.error("Workbox could not be loaded. No offline support");
   }
-}
 
