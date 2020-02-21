@@ -10,42 +10,6 @@ importScripts("/precache-manifest.813cfe30174b496d2e0dcb3446998a7f.js", "https:/
       suffix: "v1"
     });
 
-    // Add an event listener to detect when the registered
-    // service worker has installed but is waiting to activate
-    const updateButton = document.getElementById("#app-update");
-    console.log('Self ukhulama ini?',self);
-    self.addEventListener("waiting", (event) => {
-      console.log('The event::',event);
-      // `event.wasWaitingBeforeRegister` will be false if this is
-      // the first time the updated service worker is waiting.
-      // When `event.wasWaitingBeforeRegister` is true, a previously
-      // updated same service worker is still waiting.
-      // You may want to customize the UI prompt accordingly.
-      const prompt = createUIPrompt({
-        onAccept: async () => {
-          // Assuming the user accepted the update, set up a listener
-          // that will reload the page as soon as the previously waiting
-          // service worker has taken control.
-          self.addEventListener("controlling", (event) => {
-            window.location.reload();
-          });
-          // Send a message telling the service worker to skip waiting.
-          // This will trigger the `controlling` event handler above.
-          // Note: for this to work, you have to add a message
-          // listener in your service worker. See below.
-          self.addEventListener("message", (event) => {
-            if(event.data && event.data.type === "SKIP_WAITING"){
-              skipWaiting();
-            }
-          });
-        },
-        onReject: () => {
-          prompt.dismiss();
-        }
-      })
-    });
-
-
     workbox.routing.registerRoute(
       /\.css$/,
       workbox.strategies.staleWhileRevalidate({
