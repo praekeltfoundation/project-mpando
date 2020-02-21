@@ -5,11 +5,15 @@ importScripts("/precache-manifest.f169daa91ab4c96d46edaeac8788698f.js", "https:/
     // Disable logging
     console.log("Workbox is loaded");
     workbox.setConfig({ debug: true });
+    workbox.core.setCacheNameDetails({
+      prefix: "mpando",
+      suffix: "v1"
+    });
 
     // Add an event listener to detect when the registered
     // service worker has installed but is waiting to activate
-    console.log(self);
     self.addEventListener("waiting", (event) => {
+      console.log('The event::',event);
       // `event.wasWaitingBeforeRegister` will be false if this is
       // the first time the updated service worker is waiting.
       // When `event.wasWaitingBeforeRegister` is true, a previously
@@ -40,6 +44,44 @@ importScripts("/precache-manifest.f169daa91ab4c96d46edaeac8788698f.js", "https:/
     });
 
 
+    workbox.routing.registerRoute(
+      /\.css$/,
+      workbox.strategies.staleWhileRevalidate({
+        cacheName: 'css-cache'
+      })
+    );
+
+    workbox.routing.registerRoute(
+      /\.js$/,
+      workbox.strategies.staleWhileRevalidate({
+        cacheName: 'js-cache'
+      })
+    );
+
+    workbox.routing.registerRoute(
+      /\.(?:png|gif|jpg|jpeg|svg)$/,
+      workbox.strategies.cacheFirst({
+        cacheName: "images-cache",
+        plugins: [
+          new workbox.expiration.Plugin({
+            maxEntries: 20,
+            maxAgeSeconds: 7 * 24 * 60 * 60 // Weekly cache
+          })
+        ]
+      })
+    );
+
+    workbox.routing.registerRoute(
+      new RegExp("https://fonts.(?:.googlepis|gstatic).com/(.*)"),
+      workbox.strategies.cacheFirst({
+        cacheName: "googleapis",
+        plugins: [
+          new workbox.expiration.Plugin({
+            maxEntries: 3
+          })
+        ]
+      })
+    );
 
     workbox.precaching.precacheAndRoute(self.__precacheManifest);
   } else {
