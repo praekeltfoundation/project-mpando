@@ -8,15 +8,14 @@ https://medium.com/@chinmaya.cp/custom-service-worker-in-cra-create-react-app-3b
 const workboxBuild = require("workbox-build");
 const buildSW = () => {
   workboxBuild.injectManifest({
-    swSrc: "src/sw-custom.js",
-    swDest: "build/sw.js",
-    globDirectory: "build",
+    swSrc: `src/sw-custom.js`,
+    swDest: `build/sw.js`,
+    globDirectory: "build/",
     globPatterns: [
       "offline.html",
       "static/images/logo.png",
       "static/css/index.css",
       "static/js/*"
-      //"**/*.{js,css,html,png}"
     ],
     maximumFileSizeToCacheInBytes: 5 * 1024 * 1024
   }).then(({count, size, warnings}) => {
