@@ -1,9 +1,15 @@
-importScripts("/precache-manifest.a2ab661114fe17f2d98aa4ef3ad6ad8c.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.b1a77c1bca8eb8c0b0b7e327d54ffba6.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
   // Global workbox
   if (workbox) {
     // Disable logging
     console.log("Workbox is loaded");
+
+    // addEventListener("message", event => {
+    //   if (event.data && event.data.type === "SKIP_WAITING") {
+    //     skipWaiting();
+    // });
+
     workbox.setConfig({ debug: true });
     workbox.core.setCacheNameDetails({
       prefix: "mpando",
