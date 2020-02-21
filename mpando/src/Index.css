@@ -1,3 +1,19 @@
+:root {
+  --brand-blue-regal: #213d55;
+  --brand-blue-tranquil: #dae8eb;
+  --brand-blue-spindle: #c0d6dd;
+  --brand-blue-pelorous: #2d9ec5;
+  --brand-orange-bittersweet: #ff6655;
+  --greyscale-grey: #666666;
+  --greyscale-grey-lightSlate: #7e93a0;
+  --greyscale-grey-nero: #232323;
+  --secondary-error: #ff2929;
+  --secondary-blue-turquoise: #20b2aa;
+  --secondary-blue-darkPalette: #112A40;
+}
+
+/* #f4f4f4 */
+
 /* GENERAL RESET */
 html, body {
   background-color: var(--brand-blue-regal);
