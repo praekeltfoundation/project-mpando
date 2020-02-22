@@ -9,6 +9,7 @@ importScripts("/precache-manifest.d1e2480ac68d52916220dfeb09e149ca.js", "https:/
     addEventListener("message", event => {
       if (event.data && event.data.type === "SKIP_WAITING") {
         skipWaiting();
+      }
     });
 
 
