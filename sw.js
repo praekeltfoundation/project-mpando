@@ -21,7 +21,7 @@ importScripts("/precache-manifest.d1e2480ac68d52916220dfeb09e149ca.js", "https:/
 
     clients.claim() can override this default, and take control of non-controlled pages.
     */
-    workbox.clientsClaim();
+    //workbox.clientsClaim();
     workbox.setConfig({ debug: true });
     workbox.core.setCacheNameDetails({
       prefix: "mpando",
