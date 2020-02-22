@@ -14,7 +14,7 @@
     "static/media/image-one.png": "/static/media/image-one.3d6a91a9.png",
     "static/media/innovative-thoughts-1.jpg": "/static/media/innovative-thoughts-1.baede6d4.jpg",
     "static/media/ndoh-logo.png": "/static/media/ndoh-logo.b2da18c7.png",
-    "undefined/sw.js": "/undefined/sw.js"
+    "sw.js": "/sw.js"
   },
   "entrypoints": [
     "static/js/runtime-main.5274d17f.js",
