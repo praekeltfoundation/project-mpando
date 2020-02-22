@@ -1,6 +1,3 @@
-import { Workbox } from "workbox-window";
-console.log('Workbox Window',Workbox);
-
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
@@ -13,17 +10,14 @@ const isLocalhost = Boolean(
 
 export function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+
     if (publicUrl.origin !== window.location.origin) {
       return;
     }
 
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
-      const wb = new Workbox(`${process.env.PUBLIC_URL}/sw.js`);
-
-      console.log('Workbox Window with SW 1',wb);
 
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
@@ -31,16 +25,13 @@ export function register(config) {
           console.log('This web app is being served cache-first by a service');
         });
       } else {
-        registerValidSW(wb, config);
+        registerValidSW(swUrl, config);
       }
     });
   }
 }
 
 function registerValidSW(swUrlArg, config) {
-  const updateButton = document.getElementById("#app-update");
-  console.log('Before Reg::',updateButton,swUrlArg);
-
   navigator.serviceWorker
     .register(swUrlArg)
     .then(registration => {

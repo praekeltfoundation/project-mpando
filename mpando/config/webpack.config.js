@@ -631,7 +631,7 @@ module.exports = function(webpackEnv) {
         new WorkboxWebpackPlugin.InjectManifest({
           exclude: [/\.map$/, /asset-manifest\.json$/],
           swSrc: "src/sw-custom.js",
-          swDest: "sw.js",
+          swDest: "sw.js"
        }),
 
 

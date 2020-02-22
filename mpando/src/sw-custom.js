@@ -2,12 +2,6 @@
   if (workbox) {
     // Disable logging
     console.log("Workbox is loaded");
-
-    // addEventListener("message", event => {
-    //   if (event.data && event.data.type === "SKIP_WAITING") {
-    //     skipWaiting();
-    // });
-
     workbox.setConfig({ debug: true });
     workbox.core.setCacheNameDetails({
       prefix: "mpando",

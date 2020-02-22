@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import MediaBanner from '../mediaBannerComp/MediaBanner';
-import Nav from '../navComp/Nav';
 import './assets/Appointment.css';
 
 import RaisedButton from "material-ui/RaisedButton";
