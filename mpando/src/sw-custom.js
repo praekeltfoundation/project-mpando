@@ -3,7 +3,15 @@
     // Disable logging
     console.log("Workbox is loaded");
 
-    workbox.skipWaiting();
+
+    addEventListener("message", event => {
+      if (event.data && event.data.type === "SKIP_WAITING") {
+        skipWaiting();
+      }
+    });
+
+
+    //workbox.skipWaiting();
     /*
     By default, a page's fetches won't go through a service worker
     unless the page request itself went through a service worker.
@@ -12,7 +20,7 @@
 
     clients.claim() can override this default, and take control of non-controlled pages.
     */
-    workbox.clientsClaim();
+    //workbox.clientsClaim();
     workbox.setConfig({ debug: true });
     workbox.core.setCacheNameDetails({
       prefix: "mpando",

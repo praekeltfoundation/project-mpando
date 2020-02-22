@@ -19,6 +19,14 @@ function Nav() {
           </li>
           <li className="Nav-list__item">
             <NavLink
+              to="/drawer"
+              className="Nav-list__link"
+              activeClassName="Nav-list__active">
+                Drawer
+            </NavLink>
+          </li>
+          <li className="Nav-list__item">
+            <NavLink
               to="/articles"
               className="Nav-list__link"
               activeClassName="Nav-list__active">

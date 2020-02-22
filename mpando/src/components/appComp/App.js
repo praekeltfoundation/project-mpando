@@ -16,6 +16,7 @@ import Footer from '../footerComp/Footer';
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Appointment from '../appointmentComp/Appointment';
+import Drawer from '../mDrawerComp/Drawer';
 
 class App extends Component {
   render() {
@@ -27,6 +28,10 @@ class App extends Component {
           </div>
           <div className="Main">
             <Switch>
+              <Route path='/drawer'>
+                <Drawer/>
+              </Route>
+
               <Route path='/articles'>
                 <Header/>
                 <Fragment>

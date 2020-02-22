@@ -1,3 +1,6 @@
+import { Workbox } from "workbox-window";
+
+
 export function register(config) {
   //process.env.NODE_ENV === 'production' &&
   if ('serviceWorker' in navigator) {
@@ -11,12 +14,14 @@ export function register(config) {
     // ON WINDOW LOAD ||
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
+      const wb = new Workbox(swUrl);;
+
       // Fetch SW - [Review Relevance & QA Behaviour]
       fetch(swUrl, {
         headers: { 'Service-Worker': 'script' }
       }).then(response => {
           const contentType = response.headers.get('content-type');
-          console.log(contentType);
+
           if (response.status === 404 ||
             (contentType != null && contentType.indexOf('javascript') === -1)
           ) {
@@ -27,10 +32,31 @@ export function register(config) {
               });
             });
           } else {
+
+
+
+            //Add before the wb.register()
+            const updateButton = document.getElementById("app-update");
+            // Fires when the registered service worker has installed but is waiting to activate.
+            wb.addEventListener("waiting", event => {
+                updateButton.classList.add("show");
+                updateButton.addEventListener("click", () => {
+                // Set up a listener that will reload the page as
+                // soon as the previously waiting service worker has taken control.
+                wb.addEventListener("controlling", event => {
+                  window.location.reload();
+                });
+
+                // Send a message telling the service worker to skip waiting.
+                // This will trigger the `controlling` event handler above.
+                wb.messageSW({ type: "SKIP_WAITING" });
+                });
+            });
+
+
+
             // REGISTER SW ||
-            navigator.serviceWorker.register(
-              swUrl
-            ).then((reg) => {
+            wb.register().then((reg) => {
               console.log(`Service Worker Registered: ${reg}`);
             }).catch((err) => {
               console.log(`Error during service worker registration: ${err}`);
@@ -51,50 +77,4 @@ export function unregister() {
       registration.unregister();
     });
   }
-}
-
-
-//[Currently Not being used - To review Installed App behaviour]
-function registerValidSW(swUrlArg, config) {
-  navigator.serviceWorker
-    .register(swUrlArg)
-    .then(registration => {
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
-        if (installingWorker == null) {
-          return;
-        }
-        installingWorker.onstatechange = () => {
-          if (installingWorker.state === 'installed') {
-            if (navigator.serviceWorker.controller) {
-              // At this point, the updated precached content has been fetched,
-              // but the previous service worker will still serve the older
-              // content until all client tabs are closed.
-              console.log(
-                'New content is available and will be used when all ' +
-                  'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
-              );
-
-              // Execute callback
-              if (config && config.onUpdate) {
-                config.onUpdate(registration);
-              }
-            } else {
-              // At this point, everything has been precached.
-              // It's the perfect time to display a
-              // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.');
-
-              // Execute callback
-              if (config && config.onSuccess) {
-                config.onSuccess(registration);
-              }
-            }
-          }
-        };
-      };
-    })
-    .catch(error => {
-      console.error('Error during service worker registration:', error);
-    });
 }

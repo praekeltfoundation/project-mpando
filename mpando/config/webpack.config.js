@@ -629,7 +629,7 @@ module.exports = function(webpackEnv) {
       */
       new WorkboxWebpackPlugin.InjectManifest({
         swSrc: "src/sw-custom.js",
-        swDest: `${process.env.PUBLIC_URL}/sw.js`
+        swDest: "sw.js"
       }),
 
       // TypeScript type checking
