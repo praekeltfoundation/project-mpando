@@ -2,6 +2,17 @@
   if (workbox) {
     // Disable logging
     console.log("Workbox is loaded");
+
+    workbox.skipWaiting();
+    /*
+    By default, a page's fetches won't go through a service worker
+    unless the page request itself went through a service worker.
+    So you'll need to refresh the page to see the
+    effects of the service worker.
+
+    clients.claim() can override this default, and take control of non-controlled pages.
+    */
+    workbox.clientsClaim();
     workbox.setConfig({ debug: true });
     workbox.core.setCacheNameDetails({
       prefix: "mpando",
