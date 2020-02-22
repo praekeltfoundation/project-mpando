@@ -5,6 +5,13 @@ importScripts("/precache-manifest.d1e2480ac68d52916220dfeb09e149ca.js", "https:/
     // Disable logging
     console.log("Workbox is loaded");
 
+
+    addEventListener("message", event => {
+      if (event.data && event.data.type === "SKIP_WAITING") {
+        skipWaiting();
+    });
+
+
     //workbox.skipWaiting();
     /*
     By default, a page's fetches won't go through a service worker
