@@ -4,18 +4,13 @@ import './assets/Appointment.css';
 
 import RaisedButton from "material-ui/RaisedButton";
 import FlatButton from "material-ui/FlatButton";
-
 import DatePicker from "material-ui/DatePicker";
 import Dialog from "material-ui/Dialog";
 import SelectField from "material-ui/SelectField";
-
 import MenuItem from "material-ui/MenuItem";
 import TextField from "material-ui/TextField";
-
 import Card from "material-ui/Card";
-
 import { Step,Stepper,StepLabel,StepContent } from "material-ui/Stepper";
-
 import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 
 import moment from "moment";
