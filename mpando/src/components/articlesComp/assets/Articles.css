@@ -57,7 +57,7 @@
   .Articles {
     align-items: stretch;
     display: flex;
-    padding: 2em 5%;
+    padding: 2em;
     justify-content: space-between;
   }
 

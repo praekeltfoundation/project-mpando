@@ -4,6 +4,9 @@
 .search-form {
   position: relative;
 }
+.search-input {
+  background-color: var(--brand-blue-spindle);
+}
 .search-submit {
   left: 5px;
   top: 50%;
@@ -12,7 +15,7 @@
   position: absolute;
   padding: 0;
   border: 0;
-  background-color: var(--brand-blue-pelorous);
+  /*background-color: var(--brand-blue-pelorous);*/
   background-image: url(./images/search.png);
   background-repeat: no-repeat;
   background-size: 20px;

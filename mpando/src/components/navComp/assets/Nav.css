@@ -16,8 +16,8 @@
 /* NAVIGATION */
 .Navigation {
   align-items: center;
-  display: flex;
-  position: relative;
+  /*display: flex;
+  position: relative;*/
   margin: 0 auto;
   z-index: 999999999;
 }
@@ -71,6 +71,17 @@
 @media screen and (min-width: 768px) {
   .Navigation {
     padding: 5em 5%;
+  }
+  .Navigation:after {
+    background: url('./images/momconnect-image-2.png') no-repeat 3.5em bottom/35%;
+    opacity: 0.6;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 500px;
+    width: 100%;
+    z-index: -999999;
   }
   .Nav-list__item {
     display: block;
