@@ -17,6 +17,7 @@ function Nav() {
                 How to install App
             </NavLink>
           </li>
+
           <li className="Nav-list__item">
             <NavLink
               to="/articles"
