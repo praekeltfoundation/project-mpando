@@ -1,5 +1,4 @@
 import React,{ Component, Fragment } from 'react';
-import $ from "jquery";
 import './assets/Articles.css';
 
 import json from '../../data/articles.json';
@@ -14,10 +13,10 @@ class Aricles extends Component {
   }
 
   componentDidMount() {
+    console.log('Stories: componentDidMount');
     this.setState({
       data: json
     })
-    console.log('componentDidMount');
   }
 
   render() {

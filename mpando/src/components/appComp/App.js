@@ -28,6 +28,7 @@ import Footer from '../footerComp/Footer';
 import Appointment from '../appointmentComp/Appointment';
 
 import './assets/App.css';
+import json from '../../data/articles.json'; //Call json again
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -151,7 +152,7 @@ function App() {
             <Switch>
               <Route path='/stories'>
                 <Fragment>
-                  <Search/>
+                  <Search articleLists={json.map((item, index) => item.info.articleItems)}/>
                   <TextBanner description="Workplace support in the palm of your hands." author="By Nurseconnect"/>
                   <Articles/>
                 </Fragment>

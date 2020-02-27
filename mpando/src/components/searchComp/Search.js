@@ -9,40 +9,53 @@ class Search extends Component {
       hover: false,
       filtered: []
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
+    console.log('Search: componentDidMount');
     this.setState({
       filtered: this.props.articleLists
     });
   }
+  //How is this called?
   componentWillReceiveProps(nextProps) {
+    console.log('Search: componentWillReceiveProps');
     this.setState({
       filtered: nextProps.articleLists
     });
   }
-  handleSubmit(e) {
+
+  handleSubmit = (e) => {
     let currentList = [];
     let newList = [];
-    if(e.target.value !== ''){
-      currentList = this.props.articleLists;
+    const filter = e.target.value;
+    console.log('CLICKED TARGET',filter);
+
+    if(filter !== '') {
+      currentList = this.props.articleLists; //Should this be a prop again?
       newList = currentList.filter((article) => {
-        const filter = e.target.value;
         return article.includes(filter);
       });
     } else {
       newList = this.props.articleLists;
     }
+
+    console.log('NEW LIST',newList,'vs', currentList);
+
     this.setState({
       filtered: newList
     });
+
+    console.log('FILTERED',this.state.filtered,'===', newList);
   }
+
   toogleHover = () => {
     this.setState({
       hover: !this.state.hover
     })
   };
+
   render() {
+    const {filtered} = this.state;
     let buttonStyle, inputStyleResponse, searchLabel;
     if(this.state.hover) {
       searchLabel = {visibility: 'visible', transition: 'visibility 0.5s ease'}
