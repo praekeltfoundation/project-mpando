@@ -20,7 +20,7 @@ function Nav() {
 
           <li className="Nav-list__item">
             <NavLink
-              to="/articles"
+              to="/stories"
               className="Nav-list__link"
               activeClassName="Nav-list__active">
                 Stories

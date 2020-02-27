@@ -13,6 +13,10 @@
 .MuiSvgIcon-root {
   font-size: 2.5rem!important;
 }
+.MuiButtonBase-root
+.MuiIconButton-root {
+  top: 15px !important;
+}
 .makeStyles-content-8 {
   padding: 0 !important;
 }

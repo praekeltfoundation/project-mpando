@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import './assets/App.css';
-
-//import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import clsx from 'clsx';
-import { makeStyles, useTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -28,6 +26,7 @@ import Privacy from '../footerComp/PrivacyPolicy';
 import Footer from '../footerComp/Footer';
 import Appointment from '../appointmentComp/Appointment';
 
+import './assets/App.css';
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -90,6 +89,7 @@ function App() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -111,7 +111,7 @@ function App() {
           >
             <Toolbar>
               <IconButton
-                color="#c0d6dd"
+                color="default"
                 aria-label="open drawer"
                 onClick={handleDrawerOpen}
                 edge="start"
@@ -147,9 +147,8 @@ function App() {
             })}
             id="Main"
           >
-        
             <Switch>
-              <Route path='/articles'>
+              <Route path='/stories'>
                 <Fragment>
                   <TextBanner description="Workplace support in the palm of your hands." author="By Nurseconnect"/>
                   <Articles/>
