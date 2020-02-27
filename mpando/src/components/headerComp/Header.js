@@ -1,5 +1,4 @@
 import React from 'react';
-import Search from '../searchComp/Search';
 import logo from './assets/images/logo.png';
 import './assets/Header.css';
 
@@ -14,9 +13,6 @@ function Header() {
             rel="noopener noreferrer">
             <img src={logo} className="Logo" alt="logo" />
           </a>
-        </div>
-        <div className="Header-list__item Header-list__item--search">
-          <Search/>
         </div>
       </div>
     </header>

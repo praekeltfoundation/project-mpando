@@ -17,6 +17,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import Header from '../headerComp/Header';
 import Nav from '../navComp/Nav';
+import Search from '../searchComp/Search';
 import TextBanner from '../textBannerComp/TextBanner';
 import Articles from '../articlesComp/Articles';
 import Howto from '../articlesComp/Howto';
@@ -150,6 +151,7 @@ function App() {
             <Switch>
               <Route path='/stories'>
                 <Fragment>
+                  <Search/>
                   <TextBanner description="Workplace support in the palm of your hands." author="By Nurseconnect"/>
                   <Articles/>
                 </Fragment>

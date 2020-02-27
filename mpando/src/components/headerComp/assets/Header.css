@@ -8,10 +8,9 @@
 .Header-list__item {
   margin: 0 0 1em;
 }
-.Header-list__item--search {
-  display: inline-block;
-  margin: 0 10px 0 0;
-  width: 100%;
+
+.MuiPaper-elevation4 {
+  box-shadow: none !important;
 }
 
 /* RESPONSIVE */

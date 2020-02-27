@@ -54,10 +54,10 @@ class Search extends Component {
       buttonStyle = {width: '35px',borderRadius: '18px',backgroundPosition: '8px'}
     }
     return (
-      <div className="search-wrapper">
-        <form className="search-form" action="/" id="body-search">
-          <span className="search-label" style={searchLabel}>Search</span>
-          <button type="submit" className="search-submit"
+      <div className="Search-wrapper">
+        <form className="Search-form" action="/" id="body-search">
+          <span className="Search-label" style={searchLabel}>Search</span>
+          <button type="submit" className="Search-submit"
             style={buttonStyle}
             onMouseEnter={this.toogleHover}
             onMouseLeave={this.toogleHover}
@@ -65,7 +65,7 @@ class Search extends Component {
           ></button>
           <input
             type="search"
-            className="search-input"
+            className="Search-input"
             placeholder="Search"
             style={inputStyleResponse}
           />
