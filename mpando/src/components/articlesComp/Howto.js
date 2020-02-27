@@ -30,6 +30,7 @@ function Howto() {
         </div>
       </div>
       <hr/>
+      
       <div className="Howto-guide__item">
         <div className="Howto-guide__instructions">
           <h3>Browser pop up</h3>
