@@ -25,7 +25,7 @@
   padding: 0;
 }
 .Nav-list__item {
-  display: inline-block;
+  display: block;
   padding: 15px 5px;
   margin: 0 5px;
   position: relative;

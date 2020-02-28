@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 import './assets/Search.css';
 
 class Search extends Component {
@@ -7,7 +6,8 @@ class Search extends Component {
     super(props);
     this.state = {
       hover: false,
-      filtered: []
+      filtered: [],
+      someValue: ''
     }
   }
   componentDidMount() {
@@ -17,14 +17,16 @@ class Search extends Component {
     });
   }
   //How is this called?
-  componentWillReceiveProps(nextProps) {
-    console.log('Search: componentWillReceiveProps');
-    this.setState({
-      filtered: nextProps.articleLists
-    });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   console.log('Search: componentWillReceiveProps');
+  //   this.setState({
+  //     filtered: nextProps.articleLists
+  //   });
+  // }
 
   handleSubmit = (e) => {
+    e.preventDefault();
+    alert('FIRED');
     let currentList = [];
     let newList = [];
     const filter = e.target.value;
@@ -68,13 +70,13 @@ class Search extends Component {
     }
     return (
       <div className="Search-wrapper">
-        <form className="Search-form" action="/" id="body-search">
+        <form className="Search-form" id="body-search">
           <span className="Search-label" style={searchLabel}>Search</span>
           <button type="submit" className="Search-submit"
             style={buttonStyle}
-            onMouseEnter={this.toogleHover}
-            onMouseLeave={this.toogleHover}
-            onSubmit={this.handleSubmit}
+            //onMouseEnter={this.toogleHover}
+            //onMouseLeave={this.toogleHover}
+            onSubmit={e => this.handleSubmit()}
           ></button>
           <input
             type="search"
@@ -83,13 +85,6 @@ class Search extends Component {
             style={inputStyleResponse}
           />
         </form>
-
-        <Link
-          to={{
-            pathname: "/results",
-            state: ['list one', 'list two', 'list three']
-          }}
-        />
       </div>
     );
   }

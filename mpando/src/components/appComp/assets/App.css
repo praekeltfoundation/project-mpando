@@ -1,4 +1,5 @@
 .Wrapper {
+  display: flex;
   height: 100%;
   overflow: auto;
 }
@@ -10,20 +11,7 @@
   height: 100%;
 }
 
-.MuiSvgIcon-root {
-  font-size: 2.5rem!important;
-}
-.MuiButtonBase-root
-.MuiIconButton-root {
-  top: 15px !important;
-}
-.makeStyles-content-8 {
-  padding: 0 !important;
-}
 @media screen and (min-width: 768px) {
-  .Wrapper {
-    display: flex;
-  }
   #Main {
     margin-top: 90px;
   }

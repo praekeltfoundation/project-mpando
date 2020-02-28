@@ -2,18 +2,20 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import clsx from 'clsx';
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Drawer from '@material-ui/core/Drawer';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Divider from '@material-ui/core/Divider';
 
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-
 
 import Header from '../headerComp/Header';
 import Nav from '../navComp/Nav';
@@ -69,7 +71,10 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    [theme.breakpoints.down('md')]: {
+      //padding: theme.spacing(3),
+      marginTop: '80.1px',
+    },
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -86,7 +91,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-
 function App() {
   const classes = useStyles();
   const theme = useTheme();
@@ -99,13 +103,15 @@ function App() {
     setOpen(false);
   };
 
+  const articlesInfo = json.map((item, index) => item.info.articleItems);
+
     return (
       <Router>
-        <div className="Wrapper">
+        <div className={`Wrapper ${classes.root}`} >
+        <CssBaseline />
           <AppBar
-            position="absolute"
-            className={clsx(classes.appBar,
-              {
+            position="fixed" //absolute
+            className={clsx(classes.appBar,{
                 [classes.appBarShift]: open
               }
             )}
@@ -127,32 +133,32 @@ function App() {
 
           <Drawer
             className={classes.drawer}
-            id="Sidebar"
             variant="persistent"
             anchor="left"
             open={open}
             classes={{
               paper: classes.drawerPaper,
             }}
+            id="Sidebar"
           >
             <div className={classes.drawerHeader}>
               <IconButton onClick={handleDrawerClose}>
                 {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
               </IconButton>
             </div>
+            <Divider />
             <Nav/>
           </Drawer>
 
-
           <div className={clsx(classes.content, {
-            [classes.contentShift]: open,
+              [classes.contentShift]: open,
             })}
             id="Main"
           >
             <Switch>
               <Route path='/stories'>
                 <Fragment>
-                  <Search articleLists={json.map((item, index) => item.info.articleItems)}/>
+                  <Search articleLists={articlesInfo}/>
                   <TextBanner description="Workplace support in the palm of your hands." author="By Nurseconnect"/>
                   <Articles/>
                 </Fragment>
@@ -181,7 +187,7 @@ function App() {
 
               <Route path='/'>
                 <Fragment>
-                  <TextBanner description="How to Install PWA" author="Installing the application on your mobile device allows you to easily return to the application from your mobile home screen"/>
+                  <TextBanner description="Join our Community." author="It's completely free and and we're here to support you."/>
                   <Howto/>
                 </Fragment>
               </Route>

@@ -17,4 +17,4 @@ class Index extends Component {
 }
 
 ReactDOM.render(<Index/>, document.getElementById('root'));
-serviceWorker.register();
+serviceWorker.unregister();
