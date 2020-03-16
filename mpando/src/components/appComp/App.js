@@ -159,7 +159,7 @@ function App() {
               <Route path='/stories'>
                 <Fragment>
                   <Search articleLists={articlesInfo}/>
-                  <TextBanner description="Workplace support in the palm of your hands." author="By Nurseconnect"/>
+                  <TextBanner description="Workplace support in the palm of your hands." author="Nurseconnect"/>
                   <Articles/>
                 </Fragment>
               </Route>
@@ -172,7 +172,7 @@ function App() {
 
               <Route path='/faqs'>
                 <Fragment>
-                  <TextBanner description="Workplace support in the palm of your hands." author="By Nurseconnect"/>
+                  <TextBanner description="Welcome to our community!" author="Nurseconnect"/>
                   <FAQ/>
                 </Fragment>
               </Route>

@@ -111,6 +111,9 @@
     overflow: hidden;
     width: 25%;
   }
+  .Articles__thumbnail {
+    width: 100%;
+  }
   .Articles__excerpt {
     width: 55%;
   }

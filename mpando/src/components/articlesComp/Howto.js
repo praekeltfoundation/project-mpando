@@ -1,7 +1,7 @@
 import React from 'react';
 import Divider from '@material-ui/core/Divider';
 import './assets/Howto.css';
-import imageryOne from './assets/images/image-one.png';
+import imageryOne from './assets/images/nc-prototype-install.jpg';
 
 function Howto() {
   return (
