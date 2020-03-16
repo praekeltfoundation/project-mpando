@@ -18,16 +18,7 @@ function Howto() {
         <div className="Howto-guide__instructions">
           <h3>Browser pop up</h3>
           <p>When you visiting the webapp for the first time, the pop up install call to action is shown on the app.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Maecenas sed enim ut sem. Dolor sit amet consectetur adipiscing
-              elit duis tristique sollicitudin. Dui vivamus arcu felis bibendum.
-              Elit ut aliquam purus sit amet luctus. Ultricies leo integer malesuada nunc vel.
-              Felis bibendum ut tristique et egestas quis. Eu tincidunt tortor aliquam nulla
-              facilisi cras fermentum odio eu. Urna cursus eget nunc scelerisque.
-              Arcu non sodales neque sodales ut etiam. Tristique risus nec feugiat in fermentum.
-              Sed turpis tincidunt id aliquet risus. Ullamcorper morbi tincidunt ornare massa eget
-              egestas purus. Ipsum a arcu cursus vitae. </p>
+          <p>Press "Add" call to action in order to install the app to your homescreen.</p>
         </div>
       </div>
       <Divider/>

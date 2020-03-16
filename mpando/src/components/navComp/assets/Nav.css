@@ -75,7 +75,7 @@
     opacity: 0.6;
     content: "";
     position: absolute;
-    bottom: 0;
+    /*bottom: 0;*/
     left: 0;
     height: 500px;
     width: 100%;
@@ -83,6 +83,9 @@
   }
   .Nav-list__item {
     display: block;
+  }
+  .MuiSvgIcon-root {
+    font-size: 2.5rem !important;
   }
 }
 

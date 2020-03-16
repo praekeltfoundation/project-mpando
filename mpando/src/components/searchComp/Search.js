@@ -10,44 +10,48 @@ class Search extends Component {
       someValue: ''
     }
   }
+
+
   componentDidMount() {
-    console.log('Search: componentDidMount');
     this.setState({
       filtered: this.props.articleLists
     });
   }
-  //How is this called?
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('Search: componentWillReceiveProps');
-  //   this.setState({
-  //     filtered: nextProps.articleLists
-  //   });
-  // }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('Search: componentWillReceiveProps');
+    this.setState({
+      filtered: nextProps.articleLists
+    });
+  }
+
+//An Expensive Job to Memory/CPU
   handleSubmit = (e) => {
     e.preventDefault();
-    alert('FIRED');
+    const query = e.target.value;
     let currentList = [];
-    let newList = [];
-    const filter = e.target.value;
-    console.log('CLICKED TARGET',filter);
+    let searchPoolArray = [];
+    let resultsList = [];
 
-    if(filter !== '') {
-      currentList = this.props.articleLists; //Should this be a prop again?
-      newList = currentList.filter((article) => {
-        return article.includes(filter);
-      });
+    if(query !== '') {
+      currentList = this.props.articleLists;
+      for(let i = 0; i < currentList.length; i++) {
+        let title = currentList[i].title.toLowerCase();
+        let desc = currentList[i].description.toLowerCase();
+        let links = currentList[i].link;
+        searchPoolArray.push(title.split(' '),desc.split(' '),links);
+
+        resultsList = searchPoolArray.filter((article) => {
+          return article.includes(query);
+        });
+      }
+
     } else {
-      newList = this.props.articleLists;
+      resultsList = this.props.articleLists;
     }
-
-    console.log('NEW LIST',newList,'vs', currentList);
-
     this.setState({
-      filtered: newList
+      filtered: resultsList
     });
-
-    console.log('FILTERED',this.state.filtered,'===', newList);
   }
 
   toogleHover = () => {
@@ -58,33 +62,42 @@ class Search extends Component {
 
   render() {
     const {filtered} = this.state;
+
+    console.log(filtered);
     let buttonStyle, inputStyleResponse, searchLabel;
     if(this.state.hover) {
-      searchLabel = {visibility: 'visible', transition: 'visibility 0.5s ease'}
-      inputStyleResponse = { padding:'15px 15px 15px 160px'};
+      searchLabel = {visibility: 'visible', transition: 'visibility 0.8s ease',transitionDelay: '0.1s'}
+      inputStyleResponse = { padding:'15px'};
       buttonStyle = { width: '150px', cursor: 'pointer', borderRadius: '20px',backgroundPosition: '8px center'};
     } else {
       searchLabel = {visibility: 'hidden'}
-      inputStyleResponse = {padding: '15px 15px 15px 60px'}
+      inputStyleResponse = {padding: '15px'}
       buttonStyle = {width: '35px',borderRadius: '18px',backgroundPosition: '8px'}
     }
     return (
       <div className="Search-wrapper">
         <form className="Search-form" id="body-search">
-          <span className="Search-label" style={searchLabel}>Search</span>
           <button type="submit" className="Search-submit"
             style={buttonStyle}
-            //onMouseEnter={this.toogleHover}
-            //onMouseLeave={this.toogleHover}
-            onSubmit={e => this.handleSubmit()}
-          ></button>
+            onMouseEnter={this.toogleHover}
+            onMouseLeave={this.toogleHover}
+
+          >
+            <span className="Search-label" style={searchLabel}>Search</span>
+          </button>
           <input
             type="search"
             className="Search-input"
             placeholder="Search"
             style={inputStyleResponse}
+            onChange={this.handleSubmit}
           />
         </form>
+        <div className="Search-results">
+          {filtered.map((item,i) =>
+            <p key={i}>{i}</p>
+          )}
+        </div>
       </div>
     );
   }

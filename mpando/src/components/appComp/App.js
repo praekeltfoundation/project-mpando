@@ -72,7 +72,6 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     [theme.breakpoints.down('md')]: {
-      //padding: theme.spacing(3),
       marginTop: '80.1px',
     },
     transition: theme.transitions.create('margin', {
@@ -103,100 +102,98 @@ function App() {
     setOpen(false);
   };
 
-  const articlesInfo = json.map((item, index) => item.info.articleItems);
-
-    return (
-      <Router>
-        <div className={`Wrapper ${classes.root}`} >
+  return (
+    <Router>
+      <div className={`Wrapper ${classes.root}`} >
         <CssBaseline />
-          <AppBar
-            position="fixed" //absolute
-            className={clsx(classes.appBar,{
-                [classes.appBarShift]: open
-              }
-            )}
-            id="Header"
-          >
-            <Toolbar>
-              <IconButton
-                color="default"
-                aria-label="open drawer"
-                onClick={handleDrawerOpen}
-                edge="start"
-                className={clsx(classes.menuButton, open && classes.hide)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Header/>
-            </Toolbar>
-          </AppBar>
+        <AppBar
+          position="fixed" //absolute
+          className={clsx(classes.appBar,{
+              [classes.appBarShift]: open
+            }
+          )}
+          id="Header"
+        >
+          <Toolbar>
+            <IconButton
+              color="default"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Header/>
+          </Toolbar>
+        </AppBar>
 
-          <Drawer
-            className={classes.drawer}
-            variant="persistent"
-            anchor="left"
-            open={open}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            id="Sidebar"
-          >
-            <div className={classes.drawerHeader}>
-              <IconButton onClick={handleDrawerClose}>
-                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-              </IconButton>
-            </div>
-            <Divider />
-            <Nav/>
-          </Drawer>
-
-          <div className={clsx(classes.content, {
-              [classes.contentShift]: open,
-            })}
-            id="Main"
-          >
-            <Switch>
-              <Route path='/stories'>
-                <Fragment>
-                  <Search articleLists={articlesInfo}/>
-                  <TextBanner description="Workplace support in the palm of your hands." author="Nurseconnect"/>
-                  <Articles/>
-                </Fragment>
-              </Route>
-
-              <Route path='/appointment'>
-                <MuiThemeProvider>
-                  <Appointment/>
-                </MuiThemeProvider>
-              </Route>
-
-              <Route path='/faqs'>
-                <Fragment>
-                  <TextBanner description="Welcome to our community!" author="Nurseconnect"/>
-                  <FAQ/>
-                </Fragment>
-              </Route>
-
-              <Route path='/terms-and-condition'>
-                <Terms/>
-              </Route>
-
-              <Route path='/privacy-policy'>
-                <Privacy/>
-              </Route>
-
-              <Route path='/'>
-                <Fragment>
-                  <TextBanner description="Join our Community." author="It's completely free and and we're here to support you."/>
-                  <Howto/>
-                </Fragment>
-              </Route>
-            </Switch>
-            <Footer/>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          id="Sidebar"
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
           </div>
+          <Divider />
+          <Nav/>
+        </Drawer>
+
+        <div className={clsx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+          id="Main"
+        >
+          <Switch>
+            <Route path='/stories'>
+              <Fragment>
+                <Search articleLists={json.info.articleItems}/>
+                <TextBanner description="Workplace support in the palm of your hands." author="Nurseconnect"/>
+                <Articles/>
+              </Fragment>
+            </Route>
+
+            <Route path='/appointment'>
+              <MuiThemeProvider>
+                <Appointment/>
+              </MuiThemeProvider>
+            </Route>
+
+            <Route path='/faqs'>
+              <Fragment>
+                <TextBanner description="Welcome to our community!" author="Nurseconnect"/>
+                <FAQ/>
+              </Fragment>
+            </Route>
+
+            <Route path='/terms-and-condition'>
+              <Terms/>
+            </Route>
+
+            <Route path='/privacy-policy'>
+              <Privacy/>
+            </Route>
+
+            <Route path='/'>
+              <Fragment>
+                <TextBanner description="Join our Community." author="It's completely free and and we're here to support you."/>
+                <Howto/>
+              </Fragment>
+            </Route>
+          </Switch>
+          <Footer/>
         </div>
-      </Router>
-    )
+      </div>
+    </Router>
+  )
 
 }
 
