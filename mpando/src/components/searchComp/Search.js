@@ -95,7 +95,7 @@ class Search extends Component {
         </form>
         <div className="Search-results">
           {filtered.map((item,i) =>
-            <p key={i}>{i}</p>
+            <p key={i}>{item[i]}</p>
           )}
         </div>
       </div>
