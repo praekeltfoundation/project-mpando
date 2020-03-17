@@ -61,12 +61,27 @@ if (workbox) {
 
 
   self.addEventListener('fetch', event => {
-    console.log('FETCH',event);
-    event.respondWith(fetch(event.request).catch(() => {
-      return caches.open(CACHE_NAME).then(cache => {
-        return cache.match('/offline.html');
-      });
-    }));
+    console.log('FETCH',event,event.request);
+    console.log('E. REQUEST',event.request);
+    event.respondWith(
+      caches.match(event.request).then(res => {
+        if (res) {
+          return res;
+        }
+
+        return fetch(event.request).then(res => {
+          if(!response || response.status !== 200 || response.type !== 'basic') {
+           return response;
+          }
+
+          let responseToCache = response.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseToCache);
+          });
+          return response;
+        });
+      })
+    );
   });
 
 
