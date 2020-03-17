@@ -4,45 +4,29 @@ importScripts("/precache-manifest.37c39113702935e955baf336c152d8d9.js", "https:/
 
 const SW_VERSION = 'v1';
 const CACHE_NAME = 'mpando_sw';
-let OFFLINE_CACHE = [
-  '/',
-  '/offline.html',
-  '/static/images/logo.png',
-  '/static/css/index.css',
-  '/static/images/theme-spindle/ms-icon-144x144.png',
-  '/static/images/theme-spindle/apple-icon-72x72.png',
-  '/static/images/theme-spindle/apple-icon-152x152.png',
-  '/static/images/theme-spindle/apple-icon-152x152.png',
-];
+
 
 
 if (workbox) {
-  self.addEventListener("message", event => {
-    console.log('MESSAGE SW-CUSTOM',event.data,'::' ,event.type);
-    // if (event.data && event.data.type === "SKIP_WAITING") {
-    //   skipWaiting();
-    // }
-  });
-  //const swVersion = await wb.messageSW({type: 'GET_VERSION'});
-  //console.log('Service Worker version:', swVersion);
-
-  self.addEventListener('install', event => {
-    console.log('INSTALL',event);
-    // Perform install steps
-    event.waitUntil(
-      caches.open(CACHE_NAME).then(cache => {
-        console.log('Opened cache');
-        return cache.addAll(OFFLINE_CACHE);
-      })
-    );
-  });
-
-
   workbox.setConfig({ debug: true });
   workbox.core.setCacheNameDetails({
-    prefix: "mpando",
-    suffix: "v1"
+    prefix: CACHE_NAME,
+    suffix: SW_VERSION
   });
+
+
+  function matchFunction({ url }) {
+    const pages = ['/', '/offline'];
+    return pages.includes(url.pathname);
+  }
+
+  workbox.routing.registerRoute(
+    matchFunction,
+    new workbox.strategies.CacheFirst({
+      cacheName: 'html-cache'
+    })
+  );
+
   workbox.routing.registerRoute(
     /\.css$/,
     workbox.strategies.staleWhileRevalidate({
@@ -67,17 +51,25 @@ if (workbox) {
       ]
     })
   );
-  workbox.routing.registerRoute(
-    new RegExp("https://fonts.(?:.googlepis|gstatic).com/(.*)"),
-    workbox.strategies.cacheFirst({
-      cacheName: "googleapis",
-      plugins: [
-        new workbox.expiration.Plugin({
-          maxEntries: 3
-        })
-      ]
-    })
-  );
+
+  self.addEventListener("message", event => {
+    console.log('MESSAGE SW-CUSTOM',event.data,'::' ,event.type);
+    // if (event.data && event.data.type === "SKIP_WAITING") {
+    //   skipWaiting();
+    // }
+  });
+
+
+  self.addEventListener('fetch', event => {
+    console.log('FETCH',event);
+    event.respondWith(fetch(event.request).catch(() => {
+      return caches.open(CACHE_NAME).then(cache => {
+        return cache.match('/offline.html');
+      });
+    }));
+  });
+
+
 
   workbox.precaching.precacheAndRoute(self.__precacheManifest);
 } else {
