@@ -1,23 +1,19 @@
 // Global workbox
 if (workbox) {
-  console.log('zeWB sw-custom::',workbox);
-
-
   workbox.setConfig({ debug: true });
   workbox.core.setCacheNameDetails({
     prefix: "mpando",
     suffix: "v1"
   });
-
   workbox.routing.registerRoute(
     /\.css$/,
-    workbox.strategies.staleWhileRevalidate({
+    new workbox.strategies.staleWhileRevalidate({
       cacheName: 'css-cache'
     })
   );
   workbox.routing.registerRoute(
     /\.js$/,
-    workbox.strategies.staleWhileRevalidate({
+    new workbox.strategies.staleWhileRevalidate({
       cacheName: 'js-cache'
     })
   );

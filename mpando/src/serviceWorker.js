@@ -20,7 +20,7 @@ export function register(config) {
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
       const wb = new Workbox(swUrl);
-      console.log('zeWB serviceWorker:',wb);
+
       // FETCHING OF SW
       fetch(swUrl, {
         headers: { 'Service-Worker': 'script'}
@@ -81,8 +81,6 @@ export function register(config) {
               console.log(`A newer version of ${updatedURL} is available!`);
             }
           });
-
-
 
           // REGISTER SW
           wb.register();
