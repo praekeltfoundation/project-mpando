@@ -50,24 +50,27 @@ if (workbox) {
     })
   );
 
-  self.addEventListener("message", event => {
-    console.log('MESSAGE SW-CUSTOM',event.data,'::' ,event.type);
-    // if (event.data && event.data.type === "SKIP_WAITING") {
-    //   skipWaiting();
-    // }
-  });
-
-
   self.addEventListener('fetch', event => {
-    console.log('FETCH',event);
-    event.respondWith(fetch(event.request).catch(() => {
-      return caches.open(CACHE_NAME).then(cache => {
-        return cache.match('/offline.html');
-      });
-    }));
+    event.respondWith(
+      caches.match(event.request).then(res => {
+        if (res) {
+          return res;
+        }
+
+        return fetch(event.request).then(res => {
+          if(!res || res.status !== 200 || res.type !== 'basic') {
+           return res;
+          }
+
+          let responseToCache = res.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseToCache);
+          });
+          return res;
+        });
+      })
+    );
   });
-
-
 
   workbox.precaching.precacheAndRoute(self.__precacheManifest);
 } else {

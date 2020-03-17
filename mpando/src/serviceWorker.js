@@ -44,7 +44,7 @@ export function register(config) {
           wb.addEventListener('activated', (event) => {
             // `event.isUpdate` will be true if another version of the service
             // worker was controlling the page when this version was registered.
-            console.log('ACTIVATED',event);
+            //console.log('ACTIVATED',event);
             if (!event.isUpdate) {
               console.log('Service worker activated for the first time!');
               // If your service worker is configured to precache assets, those
@@ -56,7 +56,7 @@ export function register(config) {
           // https://developers.google.com/web/tools/workbox/modules/workbox-window#example-waiting
           wb.addEventListener("waiting", event => {
             updateButton.className = "show";
-              console.log('WAITING',event);
+            //console.log('WAITING',event);
             updateButton.addEventListener("click", () => {
               // Set up a listener that will reload the page as
               // soon as the previously waiting service worker has taken control.
@@ -71,7 +71,7 @@ export function register(config) {
 
           // https://developers.google.com/web/tools/workbox/modules/workbox-window#example-broadcast-updates
           wb.addEventListener('message', (event) => {
-            console.log('MESSAGE',event.data,'::' ,event.type);
+            //console.log('MESSAGE',event.data,'::' ,event.type);
             if (event.data.type === 'CACHE_UPDATED') {
               const {updatedURL} = event.data.payload;
               console.log(`A newer version of ${updatedURL} is available!`);
