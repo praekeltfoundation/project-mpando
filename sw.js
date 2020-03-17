@@ -61,8 +61,6 @@ if (workbox) {
 
 
   self.addEventListener('fetch', event => {
-    console.log('FETCH',event,event.request);
-    console.log('E. REQUEST',event.request);
     event.respondWith(
       caches.match(event.request).then(res => {
         if (res) {
@@ -70,21 +68,19 @@ if (workbox) {
         }
 
         return fetch(event.request).then(res => {
-          if(!response || response.status !== 200 || response.type !== 'basic') {
-           return response;
+          if(!res || res.status !== 200 || res.type !== 'basic') {
+           return res;
           }
 
-          let responseToCache = response.clone();
+          let responseToCache = res.clone();
           caches.open(CACHE_NAME).then(cache => {
             cache.put(event.request, responseToCache);
           });
-          return response;
+          return res;
         });
       })
     );
   });
-
-
 
   workbox.precaching.precacheAndRoute(self.__precacheManifest);
 } else {
