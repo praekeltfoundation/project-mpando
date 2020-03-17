@@ -30,7 +30,7 @@ if (workbox) {
   );
   workbox.routing.registerRoute(
     /\.(?:png|gif|jpg|jpeg|svg)$/,
-    new workbox.strategies.networkFirst({
+    workbox.strategies.networkFirst({
       cacheName: "images-cache",
       plugins: [
         new workbox.expiration.Plugin({
@@ -42,7 +42,7 @@ if (workbox) {
   );
   workbox.routing.registerRoute(
     new RegExp("https://fonts.(?:.googlepis|gstatic).com/(.*)"),
-    new workbox.strategies.cacheFirst({
+    workbox.strategies.cacheFirst({
       cacheName: "googleapis",
       plugins: [
         new workbox.expiration.Plugin({
