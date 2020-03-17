@@ -32,7 +32,7 @@ if (workbox) {
     event.waitUntil(
       caches.open(CACHE_NAME).then(cache => {
         console.log('Opened cache');
-        return cace.addAll(OFFLINE_CACHE);
+        return cache.addAll(OFFLINE_CACHE);
       })
     );
   });
