@@ -18,13 +18,13 @@ if (workbox) {
   });
   workbox.routing.registerRoute(
     /\.css$/,
-    new workbox.strategies.staleWhileRevalidate({
+    workbox.strategies.staleWhileRevalidate({
       cacheName: 'css-cache'
     })
   );
   workbox.routing.registerRoute(
     /\.js$/,
-    new workbox.strategies.staleWhileRevalidate({
+    workbox.strategies.staleWhileRevalidate({
       cacheName: 'js-cache'
     })
   );
