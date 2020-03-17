@@ -1,7 +1,16 @@
-importScripts("/precache-manifest.301db8d77fadab3b459d3fb06c796fc7.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.7f1f12a42939ab84d12031978586d36b.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 // Global workbox
 if (workbox) {
+
+  self.addEventListener("message", event => {
+    console.log(event.data, event.type);
+    // if (event.data && event.data.type === "SKIP_WAITING") {
+    //   skipWaiting();
+    // }
+  });
+
+
   workbox.setConfig({ debug: true });
   workbox.core.setCacheNameDetails({
     prefix: "mpando",
@@ -21,7 +30,7 @@ if (workbox) {
   );
   workbox.routing.registerRoute(
     /\.(?:png|gif|jpg|jpeg|svg)$/,
-    workbox.strategies.networkFirst({
+    new workbox.strategies.networkFirst({
       cacheName: "images-cache",
       plugins: [
         new workbox.expiration.Plugin({
@@ -33,7 +42,7 @@ if (workbox) {
   );
   workbox.routing.registerRoute(
     new RegExp("https://fonts.(?:.googlepis|gstatic).com/(.*)"),
-    workbox.strategies.cacheFirst({
+    new workbox.strategies.cacheFirst({
       cacheName: "googleapis",
       plugins: [
         new workbox.expiration.Plugin({
