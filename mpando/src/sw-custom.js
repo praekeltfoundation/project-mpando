@@ -2,7 +2,7 @@
 if (workbox) {
 
   self.addEventListener("message", event => {
-    console.log(event.data, event.type);
+    console.log(event.data,'::' ,event.type);
     // if (event.data && event.data.type === "SKIP_WAITING") {
     //   skipWaiting();
     // }
