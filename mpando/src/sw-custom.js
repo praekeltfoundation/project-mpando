@@ -1,34 +1,45 @@
 // Global workbox
+
+const SW_VERSION = 'v1';
+const CACHE_NAME = 'mpando_sw';
+
+
+
 if (workbox) {
-
-  self.addEventListener("message", event => {
-    console.log(event.data,'::' ,event.type);
-    // if (event.data && event.data.type === "SKIP_WAITING") {
-    //   skipWaiting();
-    // }
-  });
-
-
   workbox.setConfig({ debug: true });
   workbox.core.setCacheNameDetails({
-    prefix: "mpando",
-    suffix: "v1"
+    prefix: CACHE_NAME,
+    suffix: SW_VERSION
   });
+
+
+  function matchFunction({ url }) {
+    const pages = ['/', '/offline'];
+    return pages.includes(url.pathname);
+  }
+
+  workbox.routing.registerRoute(
+    matchFunction,
+    new workbox.strategies.CacheFirst({
+      cacheName: 'html-cache'
+    })
+  );
+
   workbox.routing.registerRoute(
     /\.css$/,
-    new workbox.strategies.staleWhileRevalidate({
+    workbox.strategies.staleWhileRevalidate({
       cacheName: 'css-cache'
     })
   );
   workbox.routing.registerRoute(
     /\.js$/,
-    new workbox.strategies.staleWhileRevalidate({
+    workbox.strategies.staleWhileRevalidate({
       cacheName: 'js-cache'
     })
   );
   workbox.routing.registerRoute(
     /\.(?:png|gif|jpg|jpeg|svg)$/,
-    new workbox.strategies.networkFirst({
+    workbox.strategies.networkFirst({
       cacheName: "images-cache",
       plugins: [
         new workbox.expiration.Plugin({
@@ -38,17 +49,25 @@ if (workbox) {
       ]
     })
   );
-  workbox.routing.registerRoute(
-    new RegExp("https://fonts.(?:.googlepis|gstatic).com/(.*)"),
-    new workbox.strategies.cacheFirst({
-      cacheName: "googleapis",
-      plugins: [
-        new workbox.expiration.Plugin({
-          maxEntries: 3
-        })
-      ]
-    })
-  );
+
+  self.addEventListener("message", event => {
+    console.log('MESSAGE SW-CUSTOM',event.data,'::' ,event.type);
+    // if (event.data && event.data.type === "SKIP_WAITING") {
+    //   skipWaiting();
+    // }
+  });
+
+
+  self.addEventListener('fetch', event => {
+    console.log('FETCH',event);
+    event.respondWith(fetch(event.request).catch(() => {
+      return caches.open(CACHE_NAME).then(cache => {
+        return cache.match('/offline.html');
+      });
+    }));
+  });
+
+
 
   workbox.precaching.precacheAndRoute(self.__precacheManifest);
 } else {
