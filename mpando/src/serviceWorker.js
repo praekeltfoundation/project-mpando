@@ -48,12 +48,6 @@ export function register(config) {
             //console.log('ACTIVATED',event);
             if (!event.isUpdate) {
               console.log('Service worker activated for the first time!');
-              //updateBanner.append()
-              console.log(serviceWorkerRegistration.showNotification(title, options));
-
-
-              // If your service worker is configured to precache assets, those
-              // assets should all be available now?
             }
           });
 
