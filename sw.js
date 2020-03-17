@@ -1,4 +1,4 @@
-importScripts("/precache-manifest.37c39113702935e955baf336c152d8d9.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.015d3719234a4ea0bd9fc95c2c4342db.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 // Global workbox
 
@@ -51,14 +51,6 @@ if (workbox) {
       ]
     })
   );
-
-  self.addEventListener("message", event => {
-    console.log('MESSAGE SW-CUSTOM',event.data,'::' ,event.type);
-    // if (event.data && event.data.type === "SKIP_WAITING") {
-    //   skipWaiting();
-    // }
-  });
-
 
   self.addEventListener('fetch', event => {
     event.respondWith(
