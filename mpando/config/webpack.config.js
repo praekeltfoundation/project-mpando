@@ -617,21 +617,19 @@ module.exports = function(webpackEnv) {
           importWorkboxFrom: 'cdn',
           navigateFallback: paths.publicUrlOrPath + 'index.html',
           navigateFallbackBlacklist: [
-            --> Exclude URLs starting with /_, as they're likely an API call
+            //Exclude URLs starting with /_, as they're likely an API call
             new RegExp('^/_'),
-            --> Exclude any URLs whose last part seems to be a file extension
-                as they're likely a resource and not a SPA route.
-                URLs containing a "?" character won't be blacklisted as they're likely
-                a route with query params (e.g. auth callbacks).
+              // Exclude any URLs whose last part seems to be a file extension
+              // as they're likely a resource and not a SPA route.
+              // URLs containing a "?" character won't be blacklisted as they're likely
+              // a route with query params (e.g. auth callbacks).
             new RegExp('/[^/?]+\\.[^/]+$'),
           ],
         }),
-      */
+        */
 
-      /* Opt in for:
-        WORKBOX WEBPACK PLUGIN InjectManifest CLASS
-        https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#injectmanifest_plugin_1
-      */
+
+      /* INJECTMANIFEST PLUGIN*/
       new WorkboxWebpackPlugin.InjectManifest({
         swSrc: "src/sw-custom.js",
         swDest: "sw.js"

@@ -70,12 +70,8 @@ export function register(config) {
           });
 
           // https://developers.google.com/web/tools/workbox/modules/workbox-window#example-broadcast-updates
-          // wb.addEventListener("message", event => {
-          //   if (event.data && event.data.type === "SKIP_WAITING") {
-          //     skipWaiting();
-          //   }
-          // });
           wb.addEventListener('message', (event) => {
+            console.log(event.data, event.type);
             if (event.data.type === 'CACHE_UPDATED') {
               const {updatedURL} = event.data.payload;
               console.log(`A newer version of ${updatedURL} is available!`);
