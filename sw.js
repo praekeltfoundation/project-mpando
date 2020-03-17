@@ -1,14 +1,41 @@
-importScripts("/precache-manifest.df5779167f3b7a1a4854cd0531790582.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.37c39113702935e955baf336c152d8d9.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 // Global workbox
-if (workbox) {
 
+const SW_VERSION = 'v1';
+const CACHE_NAME = 'mpando_sw';
+let OFFLINE_CACHE = [
+  '/',
+  `${process.env.PUBLIC_URL}/offline.html`,
+  `${process.env.PUBLIC_URL}/static/images/logo.png`,
+  `${process.env.PUBLIC_URL}/static/css/index.css`,
+  `${process.env.PUBLIC_URL}/static/images/theme-spindle/ms-icon-144x144.png`,
+  `${process.env.PUBLIC_URL}/static/images/theme-spindle/apple-icon-72x72.png`,
+  `${process.env.PUBLIC_URL}/static/images/theme-spindle/apple-icon-152x152.png`,
+  `${process.env.PUBLIC_URL}/static/images/theme-spindle/apple-icon-152x152.png`,
+];
+
+if (workbox) {
   self.addEventListener("message", event => {
-    console.log('MESSAGE SW-CUSTOME',event.data,'::' ,event.type);
+    console.log('MESSAGE SW-CUSTOM',event.data,'::' ,event.type);
     // if (event.data && event.data.type === "SKIP_WAITING") {
     //   skipWaiting();
     // }
   });
+  //const swVersion = await wb.messageSW({type: 'GET_VERSION'});
+  //console.log('Service Worker version:', swVersion);
+
+  self.addEventListener('install', event => {
+    console.log('INSTALL',event);
+    // Perform install steps
+    event.waitUntil(
+      caches.open(CACHE_NAME).then(cache => {
+        console.log('Opened cache');
+        return cace.addAll(OFFLINE_CACHE);
+      })
+    );
+  });
+
 
   workbox.setConfig({ debug: true });
   workbox.core.setCacheNameDetails({
