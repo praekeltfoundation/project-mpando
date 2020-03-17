@@ -6,17 +6,15 @@ const SW_VERSION = 'v1';
 const CACHE_NAME = 'mpando_sw';
 let OFFLINE_CACHE = [
   '/',
-  // `${process.env.PUBLIC_URL}/offline.html`,
-  // `${process.env.PUBLIC_URL}/static/images/logo.png`,
-  // `${process.env.PUBLIC_URL}/static/css/index.css`,
-  // `${process.env.PUBLIC_URL}/static/images/theme-spindle/ms-icon-144x144.png`,
-  // `${process.env.PUBLIC_URL}/static/images/theme-spindle/apple-icon-72x72.png`,
-  // `${process.env.PUBLIC_URL}/static/images/theme-spindle/apple-icon-152x152.png`,
-  // `${process.env.PUBLIC_URL}/static/images/theme-spindle/apple-icon-152x152.png`,
+  '/offline.html',
+  '/static/images/logo.png',
+  '/static/css/index.css',
+  '/static/images/theme-spindle/ms-icon-144x144.png',
+  '/static/images/theme-spindle/apple-icon-72x72.png',
+  '/static/images/theme-spindle/apple-icon-152x152.png',
+  '/static/images/theme-spindle/apple-icon-152x152.png',
 ];
 
-
-console.log(`${process.env.PUBLIC_URL}`);
 
 if (workbox) {
   self.addEventListener("message", event => {
