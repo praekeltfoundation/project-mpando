@@ -1,4 +1,4 @@
-importScripts("/precache-manifest.015d3719234a4ea0bd9fc95c2c4342db.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.784f63999c310c8f826bce2b8c2e14ca.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 // Global workbox
 
@@ -8,7 +8,7 @@ const CACHE_NAME = 'mpando_sw';
 
 
 if (workbox) {
-  workbox.setConfig({ debug: true });
+  workbox.setConfig({ debug: false });
   workbox.core.setCacheNameDetails({
     prefix: CACHE_NAME,
     suffix: SW_VERSION
