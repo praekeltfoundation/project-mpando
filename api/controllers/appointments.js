@@ -1,14 +1,17 @@
 const { Appointment, Slot } = require('../models/index');
 const Nexmo = require("nexmo");
 
+const nexmo = new Nexmo({
+  apiKey: "06e12307",
+  apiSecret: "vba6YIoJckPUA0oi"
+});
 const appointmentController = {
   all(req, res) {
     // Returns all appointments
-    console.log('ALL ENTRY::',req, res);
     Appointment.find({}).exec((err, appointments) => res.json(appointments));
   },
   create(req, res) {
-    console.log('CREATED ENTRY::',req, res);
+    //console.log('CREATED ENTRY::',req, res);
     let requestBody = req.body;
     let newslot = new Slot({
       slot_time: requestBody.slot_time,
@@ -26,16 +29,9 @@ const appointmentController = {
     });
 
     let msg = requestBody.name + " " + "this message is to confirm you appointment at" + " " + requestBody.appointment;
-
-    const nexmo = new Nexmo({
-      apiKey: "06e12307",
-      apiSecret: "vba6YIoJckPUA0oi"
-    });
-
-    console.log('FORM',requestBody);
-
+    //console.log('FORM',requestBody);
     newappointment.save((err, saved) => {
-      console.log('SAVE',saved);
+      //console.log('SAVE',saved);
       if (err) {
         console.log(`Produced:: ${err}`);
       } else {
@@ -46,13 +42,6 @@ const appointmentController = {
         Appointment.find({ _id: saved._id })
           .populate("slots")
           .exec((err, appointment) => res.json(appointment));
-
-        const message = {
-          content: {
-            type: 'text',
-            text: msg
-          }
-        }
 
         const from = 'Nexmo';
         const to = '27645576224';
