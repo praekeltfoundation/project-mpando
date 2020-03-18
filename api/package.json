@@ -14,8 +14,8 @@
     "install": "^0.13.0",
     "mongoose": "^5.8.7",
     "morgan": "~1.9.1",
-    "nexmo": "^2.6.0-beta-1",
     "npm": "^6.13.6",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "twilio": "^3.40.0"
   }
 }

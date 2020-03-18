@@ -1,10 +1,10 @@
 const { Appointment, Slot } = require('../models/index');
-const Nexmo = require("nexmo");
 
-const nexmo = new Nexmo({
-  apiKey: "06e12307",
-  apiSecret: "vba6YIoJckPUA0oi"
-});
+const accountSid = 'AC9807b5b8a82cef2684e246fea732573b';
+const authToken = 'fb9a1fcb2b3a1cbff1aa7d6916043028';
+const client = require('twilio')(accountSid, authToken);
+
+
 const appointmentController = {
   all(req, res) {
     // Returns all appointments
@@ -35,18 +35,18 @@ const appointmentController = {
       if (err) {
         console.log(`Produced:: ${err}`);
       } else {
-        /*
-          Returns the saved appointment
-          After a successful save
-        */
+        client.messages
+          .create({
+             body: msg,
+             from: 'whatsapp:+14155238886',
+             to: 'whatsapp:+27645576224'
+           })
+          .then(message => console.log(message.sid))
+          .done();
+
         Appointment.find({ _id: saved._id })
           .populate("slots")
           .exec((err, appointment) => res.json(appointment));
-
-        const from = 'Nexmo';
-        const to = '27645576224';
-        const text = 'Hello Mitso, your appointment schedule reminder.';
-        nexmo.message.sendSms(from, to, text);
       }
     });
   }
