@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import clsx from 'clsx';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+/* import useMediaQuery from '@material-ui/core/useMediaQuery'; */
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";

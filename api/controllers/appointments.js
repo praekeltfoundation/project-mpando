@@ -4,9 +4,11 @@ const Nexmo = require("nexmo");
 const appointmentController = {
   all(req, res) {
     // Returns all appointments
+    console.log('ALL ENTRY::',req, res);
     Appointment.find({}).exec((err, appointments) => res.json(appointments));
   },
   create(req, res) {
+    console.log('CREATED ENTRY::',req, res);
     let requestBody = req.body;
     let newslot = new Slot({
       slot_time: requestBody.slot_time,
@@ -22,25 +24,29 @@ const appointmentController = {
       phone: requestBody.phone,
       slots: newslot._id
     });
+
+    let msg = requestBody.name + " " + "this message is to confirm you appointment at" + " " + requestBody.appointment;
+
     const nexmo = new Nexmo({
       apiKey: "06e12307",
       apiSecret: "vba6YIoJckPUA0oi"
     });
-    let msg = requestBody.name + " " + "this message is to confirm you appointment at" + " " + requestBody.appointment;
-    // and saves the record to
-    // the data base
 
-    console.log('Get messages',requestBody);
+    console.log('FORM',requestBody);
+
     newappointment.save((err, saved) => {
+      console.log('SAVE',saved);
       if (err) {
         console.log(`Produced:: ${err}`);
       } else {
-      // Returns the saved appointment
-        // After a successful save
+        /*
+          Returns the saved appointment
+          After a successful save
+        */
         Appointment.find({ _id: saved._id })
           .populate("slots")
           .exec((err, appointment) => res.json(appointment));
-        
+
         const message = {
           content: {
             type: 'text',
@@ -48,15 +54,10 @@ const appointmentController = {
           }
         }
 
-        console.log(message.content.text);
-
-        // nexmo.channel.send(
-        //   { type: 'whatsapp', number: '27658159892' },
-        //   message,
-        //   (err, data) => {
-        //     console.log(data.message_uuid);
-        //   }
-        // );
+        const from = 'Nexmo';
+        const to = '27645576224';
+        const text = 'Hello Mitso, your appointment schedule reminder.';
+        nexmo.message.sendSms(from, to, text);
       }
     });
   }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MediaBanner from '../mediaBannerComp/MediaBanner';
 import './assets/Appointment.css';
 
+import SnackBar from '@material-ui/core/Snackbar';
 import RaisedButton from "material-ui/RaisedButton";
 import FlatButton from "material-ui/FlatButton";
 import DatePicker from "material-ui/DatePicker";
@@ -16,59 +17,60 @@ import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 import moment from "moment";
 import axios from "axios";
 
-const API_BASE = "http://localhost:8083/";
-const dayObject = moment().startOf("day");     //Start of today 12 am
-const TODAY = dayObject.format("YYYY-DD-MM");
+const API_BASE = "http://localhost:8083/"; //Live URL
+const DAYOBJECT = moment().startOf("day");     //Start of today 12 am
+const TODAY = DAYOBJECT.format("YYYY-DD-MM");
 
 class Appointment extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
+      stepIndex: 0,
+      finished: false,
+      validEmail: true,
+      validPhone: true,
+      smallScreen: window.innerWidth < 768,
       schedule: {
         [TODAY]: true
       },
-      confirmationModalOpen: false,
-      appointmentDateSelected: false,
       appointmentMeridiem: 0,
-      validEmail: true,
-      validPhone: true,
-      finished: false,
-      smallScreen: window.innerWidth < 768,
-      stepIndex: 0
+      confirmationModalOpen: false,
+      firstName: "",
+      lastName: "",
+      email: "",
+      appointmentDateSelected: false,
     };
   }
 
   handleNext = () => {
-    const { stepIndex } = this.state;
     this.setState({
-      stepIndex: stepIndex + 1
+      stepIndex: this.state.stepIndex + 1
     });
   };
   handlePrev = () => {
-    const { stepIndex } = this.state;
-    if (stepIndex > 0) {
-      this.setState({ stepIndex: stepIndex - 1 });
+    if (this.state.stepIndex > 0) {
+      this.setState({
+        stepIndex: this.state.stepIndex - 1
+      });
     }
   };
-  handleFinishTimer() {
-    const { stepIndex } = this.state;
+  handleFinishTimer = () => {
     this.setState({
-      finished: stepIndex >= 2
+      finished: this.state.stepIndex >= 2
     });
   };
-
   componentDidMount() {
     axios.get(API_BASE + 'api/retrieveSlots').then(response => {
       this.handleDBReponse(response.data);
+    }).catch(err => {
+      console.log(`Something went wrong. ${err}`);
     });
-    this.intervalId = setInterval(this.handleFinishTimer.bind(this), 10000);
+    this.intervalId = setInterval(this.handleFinishTimer, 10000);
   };
   componentWillUnmount(){
     clearInterval(this.intervalId);
   }
+
   // eslint-disable-next-line
   validateEmail(email) {const regex =/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       return regex.test(email)
@@ -81,34 +83,13 @@ class Appointment extends Component {
       ? this.setState({ phone: phoneNumber, validPhone: true })
       : this.setState({ validPhone: false });
   };
-  renderStepActions(step) {
-    const { stepIndex } = this.state;
-    return (
-      <div className="Call-to-actions">
-        {stepIndex === 2 ? null:
-          <RaisedButton
-            label="Next"
-            disableTouchRipple={true}
-            disableFocusRipple={true}
-            primary={true}
-            onClick={this.handleNext}
-            className="RaisedButton"
-          />
-        }
 
-        {step > 0 && (
-          <FlatButton
-            label="Back"
-            disabled={stepIndex === 0}
-            disableTouchRipple={true}
-            disableFocusRipple={true}
-            onClick={this.handlePrev}
-            className="FlatButton"
-          />
-        )}
-      </div>
-    );
-  };
+  /*
+  ------------------------------
+  [ON DATEPICKER CHANGE - FOR ALL DATES IN A MONTH]
+  RE-START
+  ------------------------------
+  */
   handleSetAppointmentDate(date) {
     this.setState({
       appointmentDate: date,
@@ -125,34 +106,21 @@ class Appointment extends Component {
       appointmentMeridiem: meridiem
     });
   };
-
-  /*
-    checkDisableDate(day) {
-      const dateString = moment(day).format("YYYY-DD-MM");
-      return (
-        this.state.schedule[dateString] === true ||
-        moment(day).startOf("day").diff(dayObject) < 0
-      );
-    };
-  */
-
+  checkDisableDate(day) {
+    const dateString = moment(day).format("YYYY-DD-MM");
+    return (
+      this.state.schedule[dateString] === true ||
+      moment(day).startOf("day").diff(DAYOBJECT) < 0
+    );
+  };
 
   renderAppointmentTimes() {
     if (!this.state.isLoading) {
       const slots = [...Array(8).keys()];
       return slots.map(slot => {
-
         const appointmentDateString = moment(this.state.appointmentDate).format("YYYY-DD-MM");
         const time1 = moment().hour(9).minute(0).add(slot, "hours");
         const time2 = moment().hour(9).minute(0).add(slot + 1, "hours");
-
-        {/*
-          const scheduleDisabled = this.state.schedule[appointmentDateString] ?
-          this.state.schedule[
-            moment(this.state.appointmentDate).format("YYYY-DD-MM")
-          ][slot]
-          : false;
-        */}
         const meridiemDisabled = this.state.appointmentMeridiem
          ? time1.format("a") === "am"
          : time1.format("a") === "pm";
@@ -168,43 +136,19 @@ class Appointment extends Component {
             disabled={meridiemDisabled}
          />
         );
-         {/*disabled={scheduleDisabled || meridiemDisabled} */}
+
       });
     } else {
       return null;
     }
   };
+  /*
+  ------------------------------
+  END:
+  ------------------------------
+  */
 
 
-  renderAppointmentConfirmation() {
-    return (
-      <section>
-        <p>Name: <span className="Appointment__info">
-            {this.state.firstName} {this.state.lastName}
-          </span>
-        </p>
-        <p>
-          Number: <span className="Appointment__info">{this.state.phone}</span>
-        </p>
-        <p>
-          Email: <span className="Appointment__info">{this.state.email}</span>
-        </p>
-        <p>
-          Appointment: <span className="Appointment__info">
-            {moment(this.state.appointmentDate).format("YYYY-DD-MM")}
-          </span>
-        </p>
-        <p>Time: <span className="Appointment__info">
-            {moment()
-              .hour(9)
-              .minute(0)
-              .add(this.state.appointmentSlot, "hours")
-              .format("h:mm a")}
-          </span>
-        </p>
-      </section>
-    );
-  }
 
   handleSubmit() {
     this.setState({
@@ -239,12 +183,10 @@ class Appointment extends Component {
       });
     });
   };
-
   handleDBReponse(response) {
     const appointments = response;
     const initialSchedule = {};
-    initialSchedule[dayObject.format("YYYY-DD-MM")] = true;
-
+    initialSchedule[DAYOBJECT.format("YYYY-DD-MM")] = true;
     const schedule = !appointments.length ? initialSchedule
       : appointments.reduce((currentSchedule, appointment) => {
         const { slot_date, slot_time } = appointment;
@@ -258,7 +200,6 @@ class Appointment extends Component {
           : null;
         return currentSchedule;
       }, initialSchedule);
-      console.log('Show',schedule);
     for (let day in schedule) {
       let slots = schedule[day].length ? schedule[day].every(slot => slot === true) ? (schedule[day] = true) : null : null;
     }
@@ -275,26 +216,69 @@ class Appointment extends Component {
 
   };
 
+  renderStepActions(step) {
+    const { stepIndex } = this.state;
+    return (
+      <div className="Appointment_form-buttons">
+        {stepIndex === 2 ? null:
+          <RaisedButton
+            label="Next"
+            disableTouchRipple={true}
+            disableFocusRipple={true}
+            primary={true}
+            onClick={this.handleNext}
+            className="RaisedButton"
+          />
+        }
+        {step > 0 && (
+          <FlatButton
+            label="Back"
+            disableTouchRipple={true}
+            disableFocusRipple={true}
+            onClick={this.handlePrev}
+            className="FlatButton"
+          />
+        )}
+      </div>
+    );
+  };
+  renderAppointmentConfirmation() {
+    return (
+      <section className="Appointment__popup">
+        <p>Name:
+          <span className="Appointment__info">
+            {this.state.firstName} {this.state.lastName}
+          </span>
+        </p>
+        <p>
+          Number: <span className="Appointment__info">{this.state.phone}</span>
+        </p>
+        <p>
+          Email: <span className="Appointment__info">{this.state.email}</span>
+        </p>
+        <p>
+          Appointment: <span className="Appointment__info">
+            {moment(this.state.appointmentDate).format("YYYY-DD-MM")}
+          </span>
+        </p>
+        <p>Time: <span className="Appointment__info">
+            {moment()
+              .hour(9)
+              .minute(0)
+              .add(this.state.appointmentSlot, "hours")
+              .format("h:mm a")}
+          </span>
+        </p>
+      </section>
+    );
+  }
   render() {
     const { finished, isLoading, smallScreen, stepIndex,
       confirmationModalOpen, confirmationSnackbarOpen, ...data
     } = this.state;
-
     const contactFormFilled = data.firstName && data.lastName &&
       data.phone && data.email &&
       data.validPhone && data.validEmail;
-
-    const DatePickerExampleSimple = () => (
-      <div className="Appointment__date-picker">
-        <DatePicker
-          hintText="Select Date"
-          mode={smallScreen ? "portrait" : "landscape"}
-          onChange={(n, date) => this.handleSetAppointmentDate(date)}
-          shouldDisableDate={() => false}
-        />
-        {/* shouldDisableDate={day => this.checkDisableDate(day)} */}
-      </div>
-    );
     const modalActions = [
       <FlatButton
         label="Cancel"
@@ -309,6 +293,21 @@ class Appointment extends Component {
         onClick={() => this.handleSubmit()}
       />
     ];
+    const datePickerOfAppointment = () => (
+      <div className="Appointment__date-picker">
+        <DatePicker
+          hintText="Select Date"
+          mode = {smallScreen ? "portrait" : "landscape"}
+          onChange = {(n, date) => this.handleSetAppointmentDate(date)}
+          /*
+          ------------------------------
+          RE-START
+          ------------------------------
+          */
+          shouldDisableDate = {date => this.checkDisableDate(date)}
+        />
+      </div>
+    );
 
     return (
       <div className="Appointment">
@@ -319,15 +318,17 @@ class Appointment extends Component {
               activeStep={stepIndex}
               orientation="vertical"
               linear={true}>
+              {/* STEP ONE */}
               <Step>
                 <StepLabel>
                   Choose an available day for your appointment
                 </StepLabel>
                 <StepContent>
-                  {DatePickerExampleSimple()}
+                  {datePickerOfAppointment()}
                   {this.renderStepActions(0)}
                 </StepContent>
               </Step>
+              {/* STEP TWO */}
               <Step disabled={!data.appointmentDate}>
                 <StepLabel>
                   Choose an available time for your appointment
@@ -358,6 +359,7 @@ class Appointment extends Component {
                   {this.renderStepActions(1)}
                 </StepContent>
               </Step>
+              {/* STEP THREE */}
               <Step>
                 <StepLabel>
                   We require your contact information in order to send you a
@@ -424,7 +426,7 @@ class Appointment extends Component {
                       }
                       disabled={!contactFormFilled || data.processed}
                     />
-                    </section>
+                  </section>
                   {this.renderStepActions(2)}
                 </StepContent>
               </Step>
@@ -437,7 +439,7 @@ class Appointment extends Component {
             title="Confirm your appointment">
             {this.renderAppointmentConfirmation()}
           </Dialog>
-          {/*<SnackBar
+          {<SnackBar
             open={ confirmationSnackbarOpen || isLoading }
             message={
               isLoading ? "Loading... " : data.confirmationSnackbarMessage || ""
@@ -446,7 +448,7 @@ class Appointment extends Component {
             onRequestClose={() =>
               this.setState({ confirmationSnackbarOpen: false })
             }
-          />*/}
+          />}
         </div>
       </div>
     );

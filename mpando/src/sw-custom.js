@@ -6,7 +6,7 @@ const CACHE_NAME = 'mpando_sw';
 
 
 if (workbox) {
-  workbox.setConfig({ debug: true });
+  workbox.setConfig({ debug: false });
   workbox.core.setCacheNameDetails({
     prefix: CACHE_NAME,
     suffix: SW_VERSION

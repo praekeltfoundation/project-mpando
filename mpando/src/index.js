@@ -12,7 +12,8 @@ class Index extends Component {
         <div id="app-update" className="hidden">
           <p className="connectivity">Online</p>
         </div>
-        <div id="app-banner"></div>
+        {/*  <div id="app-banner"></div>*/}
+
         <App />
       </div>
     )

@@ -34,7 +34,7 @@ export function register(config) {
           });
         } else {
           let updateButton = document.getElementById("app-update");
-          let updateBanner = document.getElementById("app-banner");
+
           /*
             !IMPORTANT
               Fires when the registered SERVICE WORKER is
