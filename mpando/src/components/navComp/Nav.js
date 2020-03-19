@@ -14,7 +14,16 @@ function Nav() {
               to="/"
               className="Nav-list__link"
               activeClassName="Nav-list__active">
-                Home
+                How to install App
+            </NavLink>
+          </li>
+
+          <li className="Nav-list__item">
+            <NavLink
+              to="/stories"
+              className="Nav-list__link"
+              activeClassName="Nav-list__active">
+                Stories
             </NavLink>
           </li>
           <li className="Nav-list__item">
@@ -24,6 +33,14 @@ function Nav() {
               activeClassName="Nav-list__active">
                 Appointment
                 <span className="Nav-list__link--subtext"></span>
+            </NavLink>
+          </li>
+          <li className="Nav-list__item">
+            <NavLink
+              to="/faqs"
+              className="Nav-list__link"
+              activeClassName="Nav-list__active">
+                FAQs
             </NavLink>
           </li>
         </ul>

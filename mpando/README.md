@@ -4,4 +4,9 @@
 [SxD Research Collaboration](https://docs.google.com/presentation/d/144BPQJmoxHx1KnK-qkIwUozhJkndpst20Yn-iPcoBWs/edit#slide=id.g75e41d7548_0_271)
 
 
+### Workbox Webpack Plugin Setup
+https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
+https://developers.google.com/web/tools/workbox/guides/precache-files/webpack
+
+
 [General Notes](https://docs.google.com/document/d/1VY4wNqNYjMoUMRmQzwlGtezvSg42CwofERSJBAQvvXk/edit)

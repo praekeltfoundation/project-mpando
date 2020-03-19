@@ -1,1 +1,18 @@
+.Wrapper {
+  display: flex;
+  height: 100%;
+  overflow: auto;
+}
 
+#Main {
+  background: var(--brand-blue-spindle);
+  position: relative;
+  overflow: auto;
+  height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  #Main {
+    margin-top: 90px;
+  }
+}

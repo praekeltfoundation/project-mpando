@@ -1,13 +1,14 @@
 .Banner {
+  background: var(--brand-blue-pelorous);
   position: relative;
 }
 .Banner--inner {
-  color: var(--brand-orange-bittersweet);
+  color: #fff;
   padding: 1em 0.5em;
   text-align: center;
 }
 .Banner__title {
-  font-size: 22px;
+  font-size: 32px;
   padding: 0 0.5em;
 }
 .Banner__author {
@@ -27,8 +28,5 @@
 @media screen and (min-width: 1024px) {
   .Banner--inner {
     padding: 1em 10%;
-  }
-  .Banner__title {
-    padding: 0 20%;
   }
 }

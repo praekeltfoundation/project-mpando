@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './Variables.css';
 import './Index.css';
 import * as serviceWorker from './serviceWorker';
 
 import App from './components/appComp/App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class Index extends Component {
+  render() {
+    return (
+      <div className="Container">
+        <div id="app-update" className="hidden">
+          <p className="connectivity">Online</p>
+        </div>
+        {/*  <div id="app-banner"></div>*/}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+        <App />
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<Index/>, document.getElementById('root'));
 serviceWorker.register();

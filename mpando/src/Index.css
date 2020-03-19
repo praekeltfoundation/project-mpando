@@ -1,10 +1,27 @@
+:root {
+  --brand-blue-regal: #213d55;
+  --brand-blue-tranquil: #dae8eb;
+  --brand-blue-spindle: #c0d6dd;
+  --brand-blue-pelorous: #2d9ec5;
+  --brand-orange-bittersweet: #ff6655;
+  --greyscale-grey: #666666;
+  --greyscale-grey-lightSlate: #7e93a0;
+  --greyscale-grey-nero: #232323;
+  --secondary-error: #ff2929;
+  --secondary-blue-turquoise: #20b2aa;
+  --secondary-blue-darkPalette: #112A40;
+}
+
+/* #f4f4f4 */
+
 /* GENERAL RESET */
 html, body {
-  background-color: var(--brand-blue-regal);
+  background-color: var(--brand-blue-spindle);
+  height: 100%;
 }
 body {
-  background-color: var(--brand-blue-regal);
-  color: #fff;
+  background-color: var(--brand-blue-spindle);
+  color: var(--brand-blue-regal);
   line-height: 1.5;
   font-size: 16px;
   font-family: 'Roboto','Helvetica Neue', sans-serif;
@@ -15,6 +32,7 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
@@ -32,7 +50,7 @@ ul, ol, li {
 
 /* FORM RESET */
 form {
-  overflow: auto;
+  position: relative;
 }
 fieldset {
   border: none;
@@ -40,12 +58,67 @@ fieldset {
   padding: 1em 0;
 }
 
-
 /* BODY */
 #root {
   position: relative;
+  height: 100%;
+}
+
+
+#app-update {
+  border: 3px solid var(--brand-orange-bittersweet);
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 5px 45px;
+  text-align: center;
+  transition: background-color 0.5s ease;
+  z-index: 99999;
+}
+#app-update .connectivity {
+  color: var(--brand-orange-bittersweet);
+  font-size: 16px;
+  margin: 0;
+}
+
+#app-update:hover,
+#app-update:focus {
+  background-color: var(--brand-orange-bittersweet);
+}
+#app-update:hover .connectivity ,
+#app-update:focus .connectivity {
+  color: #fff;
+}
+.hidden {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+#app-banner {
+  background-color: rgba(32,33,34,0.6);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: #fff;
+  height: 200px;
+  width: 500px;
+  text-align: center;
+  z-index: 99999999;
 }
 
 .Logo {
-  max-width: 125px;
+  max-width: 165px;
+}
+@media screen and (min-width: 768px) {
+  #app-update {
+    position: absolute;
+    right: 25px;
+    top: 1em;
+  }
+
+  #app-banner {
+    position: absolute;
+    right: 0;
+    top: 60px;
+  }
 }

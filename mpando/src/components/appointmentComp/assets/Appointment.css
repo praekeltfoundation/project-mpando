@@ -20,28 +20,30 @@
   color: var(--brand-blue-pelorous);
   font-weight: bold;
 }
-.Call-to-actions {
+
+
+/* Start
+  FORM OVERRIDES */
+.Appointment_form-buttons {
   overflow: auto;
 }
-
-.Call-to-actions .RaisedButton button {
+.Appointment_form-buttons .RaisedButton button {
   background-color: var(--brand-blue-pelorous) !important;
 }
-
 .RaisedButtonBig {
   display: block;
   width: auto;
   margin: 0 auto;
 }
-
-.Call-to-actions .FlatButton {
-  background: var( --secondary-blue-turquoise) !important;
+.Appointment_form-buttons .FlatButton {
+  background: var(--brand-orange-bittersweet) !important;
   color: #fff !important;
   margin: 0 5px 0 5px !important;
 }
+/* End */
 
 @media screen and (min-width: 768px) {
   .Appointment-scheduler {
-   padding: 20px 10% 1em;
+   padding: 120px 10% 1em;
   }
 }
