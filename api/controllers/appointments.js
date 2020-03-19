@@ -1,7 +1,7 @@
 const { Appointment, Slot } = require('../models/index');
 
-const accountSid = 'AC9807b5b8a82cef2684e246fea732573b';
-const authToken = 'fb9a1fcb2b3a1cbff1aa7d6916043028';
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
 
